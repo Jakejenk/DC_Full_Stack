@@ -1,0 +1,29 @@
+{
+  "name": "DC_Full_Stack",
+  "version": "1.0.0",
+  "description": "Digital Crafts full stack project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jakejenk/DC_Full_Stack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jakejenk/DC_Full_Stack/issues"
+  },
+  "homepage": "https://github.com/Jakejenk/DC_Full_Stack#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13",
+    "sequelize-cli": "^6.2.0"
+  }
+}
