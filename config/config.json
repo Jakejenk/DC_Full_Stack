@@ -15,14 +15,14 @@
   "test": {
     "username": "vgwuksyinmxyfx",
     "password": "0bdbb51a4605520040cfbacff614d57e8bd5494ecd0a73b24aae3965d3a0fb9a",
-    "database": "database_test",
+    "database": "d20mfshssi1c64",
     "host": "ec2-34-233-187-36.compute-1.amazonaws.com",
     "dialect": "postgres"
   },
   "production": {
     "username": "vgwuksyinmxyfx",
     "password": "0bdbb51a4605520040cfbacff614d57e8bd5494ecd0a73b24aae3965d3a0fb9a",
-    "database": "database_production",
+    "database": "d20mfshssi1c64",
     "host": "ec2-34-233-187-36.compute-1.amazonaws.com",
     "dialect": "postgres"
   }

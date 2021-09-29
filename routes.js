@@ -6,12 +6,14 @@ const port = 3000;
 const express = require("express");
 const app = express();
 const server = http.createServer(app);
+//
+//
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, Model, DataTypes } = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.json")[env];
+const config = require("./config/config.json")[env];
 const db = {};
 const bodyParser = require("body-parser");
 
