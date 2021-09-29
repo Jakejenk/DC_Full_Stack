@@ -1,10 +1,15 @@
 {
-  "name": "DC_Full_Stack",
+  "name": "cycling4life",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.17.0"
+  },
+  "private": true,
   "description": "Digital Crafts full stack project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node routes.js"
   },
   "repository": {
     "type": "git",
