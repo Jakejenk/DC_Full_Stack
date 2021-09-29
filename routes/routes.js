@@ -2,7 +2,7 @@
 
 const http = require("http");
 const hostname = "cycling4life.herokuapp.com";
-// const port = 3000;
+const port = 3000;
 const express = require("express");
 const app = express();
 const server = http.createServer(app);
