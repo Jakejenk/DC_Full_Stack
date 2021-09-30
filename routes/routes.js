@@ -1,8 +1,8 @@
 "use strict";
 
 const http = require("http");
-const hostname = "cycling4life.herokuapp.com";
-const port = 3000;
+// const hostname = "cycling4life.herokuapp.com";
+// const port = 3000;
 const express = require("express");
 const app = express();
 const server = http.createServer(app);
@@ -144,6 +144,6 @@ app.delete("/users/:id", async (req, res) => {
   //console.log(users);
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+// server.listen(port, hostname, () => {
+//   console.log(`Server running at http://${hostname}:${port}/`);
+// });
