@@ -6,8 +6,15 @@ const port = 3000;
 const express = require("express");
 const app = express();
 const server = http.createServer(app);
+<<<<<<< HEAD:models/index-backup.js
+const es6Renderer = require('express-es6-template-engine');
+app.engine('html', es6Renderer);
+app.set('views', 'templates');
+app.set('view engine', 'html');
+=======
 //
 //
+>>>>>>> main:routes/routes.js
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, Model, DataTypes } = require("sequelize");
