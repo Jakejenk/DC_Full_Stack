@@ -1,12 +1,18 @@
 "use strict";
 
+//Create Server and Require Express 
 const http = require("http");
 const hostname = "127.0.0.1";
 const port = 3000;
 const express = require("express");
 const app = express();
 const server = http.createServer(app);
-//
+
+//ES6 Template Requirements 
+app.engine('html', es6Renderer);
+app.set('views', './views');
+app.set('view engine', 'html');
+
 //
 const fs = require("fs");
 const path = require("path");
@@ -138,3 +144,4 @@ app.delete("/users/:id", async (req, res) => {
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+
