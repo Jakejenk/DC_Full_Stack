@@ -1,8 +1,8 @@
 "use strict";
 
 const http = require("http");
-const hostname = "cycling4life.herokuapp.com";
-const port = 9000;
+// const hostname = "cycling4life.herokuapp.com";
+// const port = 9000;
 const express = require("express");
 const app = express();
 //const server = http.createServer(app);
