@@ -6,9 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css" />
+    <!-- datepicker test -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <!-- end test -->
+
     <title>DC_Full_Stack</title>
     <script>
-
+        $(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
     </script>
 </head>
 <body>
@@ -57,90 +78,103 @@
     <section class="text-dark p-4" id="mainPage">
         <h1 class="text-center text-black pt-5">Cycling 4 Lyfe</h1>
         <div class="container-fluid" id="mainBody">
-            <div class="row" style="height: 250px">
-                <div class="col-md-3 border border-secondary">
-                    <h3>Name</h3>
-                    <p>gender</p>
-                    <p>age</p>
-                    <p>skill level</p>
+            <div class="row">
+                <div class="col-md-3 border border-secondary" style=>
+                    <div class="card">
+                        <img src="../images/13207.jpeg" class="card-img-top" alt="No image" style="max-width: 50%;"/>
+                        <div class="card-body">
+                          <h5 class="card-title">User Name</h5>
+                          <p class="card-text">Age</p>
+                          <p class="card-text">Skill Level</p>
+                        </div>
+                      </div>
                 </div>
                 
-                <div class="col-md-6 border border-secondary form-group">
-                    <form action="" method="POST">
-                        <div class="form-group">
-                        <div class="row p-2">
-                            <div class="col-md-2">
-                                <p>Date of Ride:</p>
-                            </div>
-                            <div class="col-md-4">
-
-                            </div>
-                            <div class="col-md-2">
-                                <p>Distance:</p>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="number" name="distance" class="form-control" step="0.1" required min="0" max="200"> 
-                            </div>
-                        </div>
-                        <div class="row p-2">
-                            <div class="col-md-3">
-                                <p>Location of Ride:</p>
-                            </div>
-                            <div class="col-md-9">
-                                <input type="text" name="rideLocation" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="row p-2">
-                            <div class="col-md-3">
-                                <p>Difficulty Level:</p>
-                            </div>
-                            <div class="col-md-9">    
-                                <div class="input-group" id="difficulty">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                        <label class="form-check-label" for="inlineCheckbox1">Easy</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                        <label class="form-check-label" for="inlineCheckbox2">Moderate</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                                        <label class="form-check-label" for="inlineCheckbox3">Hard</label>
+                <div class="col-md-6 border border-secondary">
+                    <form action="/rides" method="POST">
+                        <!-- <div class="form-group"> -->
+                            <div class="row p-2">
+                                <div class="col-md-3">
+                                    <label class="control-label" for="date">Date of Ride: </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <p>Distance:</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" name="distance" id="distance" class="form-control" step="0.1" required min="0" max="200" required> 
+                                </div>
+                                </div>
+                                <div class="row p-2">
+                                <div class="col-md-3">
+                                    <p>Location of Ride:</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="rideLocation" id="location" class="form-control" required>
+                                </div>
+                                </div>
+                                <div class="row p-2">
+                                <div class="col-md-3">
+                                    <p>Difficulty Level:</p>
+                                </div>
+                                <div class="col-md-9">    
+                                    <div class="input-group has-validation" id="difficulty">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                            <label class="form-check-label" for="inlineCheckbox1">Easy</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Moderate</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                            <label class="form-check-label" for="inlineCheckbox3">Hard</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div style="text-align: center;">
-                            <button class="btn btn-primary" type = "button" onclick="">Submit</button>
-                        </div>
-                    </div>
+                            <div class="row p-2">
+                                <div style="text-align: center;">
+                                    <button class="btn btn-primary" type = "button" onclick="">Submit</button>
+                                </div>
+                            </div>
+                        <!-- </div> -->
                     </form>
                 </div>
                     
                 <div class="col-md-3 border border-secondary" style="text-align: center;">
                     <h3>Your Data</h3>
-                    <div class="row p-3">
-                        <button class="btn btn-primary" type = "button" onclick="">Summary of Rides</button>
-                    </div>
-                    <div class="row p-3">
-                        <button class="btn btn-primary" type = "button" onclick="">Distance This Month</button>  
-                    </div>
-                    <div class="row p-2">
-                        <div class="col-md-7">
-                            <input placeholder="date">
+                    <form action="/rides" method="GET">
+                        <div class="row p-3">
+                            <button class="btn btn-primary" type = "button">Summary of Rides</button>
                         </div>
-                        <div class="col-md-5">
-                            <button class="btn btn-primary btn-sm" type = "button" onclick="">Submit</button>
+                    </form>
+                    <form action="" method="GET">
+                        <div class="row p-3">
+                            <button class="btn btn-primary" type = "button" onclick="">Distance This Month</button>  
                         </div>
-                    </div>
+                    </form>
+                    <form action="" method="GET">
+                        <div class="row p-1">
+                            <div class="col-md-7">
+                                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                            </div>
+                            <div class="col-md-5">
+                                <button class="btn btn-primary" type = "button" onclick="">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="row" style="height: 400px">
+            <div class="row">
                 <div class="col-md-3 border border-secondary">
                     <p>Place Holder</p>
                 </div>
                 <div class="col-md-9 border border-secondary">
+                    
                     <p>data display</p>
                 </div>
             </div>
