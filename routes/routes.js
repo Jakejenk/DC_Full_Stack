@@ -2,10 +2,10 @@
 
 const http = require("http");
 // const hostname = "cycling4life.herokuapp.com";
-// const port = 3000;
+// const port = 9000;
 const express = require("express");
 const app = express();
-const server = http.createServer(app);
+//const server = http.createServer(app);
 const es6Renderer = require("express-es6-template-engine");
 app.engine("html", es6Renderer);
 app.set("views", "templates");
@@ -209,6 +209,5 @@ app.delete("/rides", async (req, res) => {
   //console.log(rides);
 });
 
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
+// start the server listening for requests
+app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
