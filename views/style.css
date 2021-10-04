@@ -19,9 +19,16 @@ body {
   #login .container #login-row #login-column #login-box #login-form #register-link {
     margin-top: -85px;
   }
+<<<<<<< HEAD
 
   .title-header {
     display: flex;
     justify-content: center;
     font-weight: 800;
+=======
+  #mainPage .container-fluid {
+    margin-top: 45px;
+    border: 1px solid #9C9C9C;
+    background-color: #EAEAEA;
+>>>>>>> main
   }
