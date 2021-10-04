@@ -6,10 +6,10 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const server = http.createServer(app);
-const es6Renderer = require('express-es6-template-engine');
-app.engine('html', es6Renderer);
-app.set('views', 'templates');
-app.set('view engine', 'html');
+const es6Renderer = require("express-es6-template-engine");
+app.engine("html", es6Renderer);
+app.set("views", "templates");
+app.set("view engine", "html");
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, Model, DataTypes } = require("sequelize");
@@ -162,10 +162,10 @@ app.delete("/users/:id", async (req, res) => {
 });
 
 // get all rides
-app.get("/rides", async (req, res)  => {
+app.get("/rides", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const rides = await Rides.findAll();
-  console.log (rides);
+  console.log(rides);
   res.status(200).send("Ride was Added");
 });
 
@@ -175,7 +175,8 @@ app.get("/rides/:date/:user", async (req, res) => {
   let ridesDate = req.params["date"];
   let userId = req.params["user"];
   const rides = await rides.findAll({
-    where: { date: ridesDate && user_name: userId},
+    where: { [op.and]: [{ date: ridesDate }, { user_name: userId }] },
+    //WHERE date = ridesDATE AND user_name = userId
   });
   res.status(200).send(rides);
   //console.log(rides);
@@ -211,7 +212,3 @@ app.delete("/rides", async (req, res) => {
 // server.listen(port, hostname, () => {
 //   console.log(`Server running at http://${hostname}:${port}/`);
 // });
-<<<<<<< HEAD
-=======
-
->>>>>>> main
