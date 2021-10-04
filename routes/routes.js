@@ -49,6 +49,7 @@ db.Sequelize = Sequelize;
 module.exports = db;
 
 class User extends Model {}
+class Ride extends Model {}
 
 User.init(
   {
@@ -58,6 +59,20 @@ User.init(
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     skill_level: DataTypes.STRING,
+  },
+  {
+    sequelize,
+    modelName: "User",
+  }
+);
+
+Ride.init(
+  {
+    user_name: DataTypes.STRING,
+    date_of_ride: DataTypes.DATE,
+    distance: DataTypes.INTEGER,
+    location_of_ride: DataTypes.STRING,
+    difficulty_level: DataTypes.STRING,
   },
   {
     sequelize,
@@ -144,6 +159,6 @@ app.delete("/users/:id", async (req, res) => {
   //console.log(users);
 });
 
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
