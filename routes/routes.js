@@ -6,8 +6,10 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const server = http.createServer(app);
-//
-//
+const es6Renderer = require('express-es6-template-engine');
+app.engine('html', es6Renderer);
+app.set('views', 'templates');
+app.set('view engine', 'html');
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, Model, DataTypes } = require("sequelize");
@@ -159,6 +161,53 @@ app.delete("/users/:id", async (req, res) => {
   //console.log(users);
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+// get all rides
+app.get("/rides", async (req, res)  => {
+  res.setHeader("Content-Type", "application/json");
+  const rides = await Rides.findAll();
+  console.log (rides);
+  res.status(200).send("Ride was Added");
 });
+
+// get a single ride
+app.get("/rides/:date/:user", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  let ridesDate = req.params["date"];
+  let userId = req.params["user"];
+  const rides = await rides.findAll({
+    where: { date: ridesDate && user_name: userId},
+  });
+  res.status(200).send(rides);
+  //console.log(rides);
+});
+
+// post a new ride
+
+app.post("/rides", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  await rides.create({
+    user_name: req.body.user_name,
+    date_of_ride: req.body.date_of_ride,
+    location: req.body.location,
+    distance: req.body.distance,
+    difficulty: req.body.difficulty,
+  });
+
+  res.status(200).send("Ride added");
+  //console.log();
+});
+
+// delete a ride
+app.delete("/rides", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  let ridesId = req.params["id"];
+  const rides = await rides.destroy({
+    where: { id: ridesId },
+  });
+  res.status(200).send("Ride was deleted");
+  //console.log(rides);
+});
+
+// server.listen(port, hostname, () => {
+//   console.log(`Server running at http://${hostname}:${port}/`);
+// });
