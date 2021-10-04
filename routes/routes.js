@@ -211,4 +211,7 @@ app.delete("/rides", async (req, res) => {
 // server.listen(port, hostname, () => {
 //   console.log(`Server running at http://${hostname}:${port}/`);
 // });
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
