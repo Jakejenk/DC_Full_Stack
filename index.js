@@ -5,10 +5,6 @@ const http = require("http");
 const express = require("express");
 const app = express();
 //const server = http.createServer(app);
-const es6Renderer = require("express-es6-template-engine");
-app.engine("html", es6Renderer);
-app.set("views", "templates");
-app.set("view engine", "html");
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, Model, DataTypes } = require("sequelize");
@@ -17,6 +13,12 @@ const env = process.env.NODE_ENV || "development";
 const config = require("./config/config.json")[env];
 const db = {};
 const bodyParser = require("body-parser");
+
+// Set up es6 Template Engine
+const es6Renderer = require("express-es6-template-engine");
+app.engine("html", es6Renderer);
+app.set("views", "templates");
+app.set("view engine", "html");
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -207,10 +209,24 @@ app.delete("/rides", async (req, res) => {
   //console.log(rides);
 });
 
-// This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+// // This is the way to start the server on heroku
+// app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 // This is the way to start the server locally
-// app.listen(3300, function () {
-//   console.log("Server is running on localhost:3300");
-// });
+app.listen(3300, function () {
+  console.log("Server is running on localhost:3300");
+});
+//
+//
+
+// This is the start of the template engine calls
+app.get("/home", (req, res) => {
+  res.render("home", {
+    locals: {
+      title: "Address Book App",
+    },
+    partials: {
+      head: "/partials/head",
+    },
+  });
+});
