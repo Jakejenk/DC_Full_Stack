@@ -79,7 +79,7 @@ Ride.init(
   },
   {
     sequelize,
-    modelName: "User",
+    modelName: "Ride",
   }
 );
 
@@ -165,9 +165,9 @@ app.delete("/users/:id", async (req, res) => {
 // get all rides
 app.get("/rides", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const rides = await Rides.findAll();
-  console.log(rides);
-  res.status(200).send("Ride was Added");
+  const rideData = await Ride.findAll();
+  console.log(rideData);
+  res.status(200).send(rideData);
 });
 
 // get a single ride
