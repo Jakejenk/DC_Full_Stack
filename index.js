@@ -214,9 +214,9 @@ app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 // This is the way to start the server locally
 // app.listen(3300, function () {
-// console.log("Server is running on localhost:3300");
+//   console.log("Server is running on localhost:3300");
 // });
-//
+
 //
 
 // This is the start of the template engine calls
@@ -225,9 +225,9 @@ app.get("/home", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
 
@@ -236,9 +236,9 @@ app.get("/about", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
 
