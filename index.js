@@ -1,25 +1,22 @@
 "use strict";
 
 const http = require("http");
-// const hostname = "cycling4life.herokuapp.com";
-// const port = 9000;
+
 const express = require("express");
 const app = express();
 //const server = http.createServer(app);
+const es6Renderer = require("express-es6-template-engine");
+app.engine("html", es6Renderer);
+app.set("views", "templates");
+app.set("view engine", "html");
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, Model, DataTypes } = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/config/config.json")[env];
+const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 const bodyParser = require("body-parser");
-
-// Set up es6 Template Engine
-const es6Renderer = require("express-es6-template-engine");
-app.engine("html", es6Renderer);
-app.set("views", "views");
-app.set("view engine", "html");
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -175,7 +172,6 @@ app.get("/rides", async (req, res) => {
 app.get("/rides/:date/:user", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let ridesDate = req.params["date"];
-  let userId = req.params["user"];
   const rides = await rides.findAll({
     where: { [op.and]: [{ date: ridesDate }, { user_name: userId }] },
     //WHERE date = ridesDATE AND user_name = userId
@@ -218,16 +214,3 @@ app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 // app.listen(3300, function () {
 //   console.log("Server is running on localhost:3300");
 // });
-
-// This section starts the es6 templating handlers
-
-app.get("/home", (req, res) => {
-  res.render("home", {
-    locals: {
-      title: "Cycling 4 Lyfe",
-    },
-    partials: {
-      partial: "views/partials/navbar.html",
-    },
-  });
-});
