@@ -50,8 +50,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-class User extends Model {}
-class Ride extends Model {}
+class User extends Model { }
+class Ride extends Model { }
 
 User.init(
   {
@@ -162,10 +162,10 @@ app.delete("/users/:id", async (req, res) => {
 });
 
 // get all rides
-app.get("/rides", async (req, res)  => {
+app.get("/rides", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const rides = await Rides.findAll();
-  console.log (rides);
+  console.log(rides);
   res.status(200).send("Ride was Added");
 });
 
@@ -173,9 +173,9 @@ app.get("/rides", async (req, res)  => {
 app.get("/rides/:date/:user", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let ridesDate = req.params["date"];
-  let userId = req.params["user"];
   const rides = await rides.findAll({
-    where: { date: ridesDate && user_name: userId},
+    where: { [op.and]: [{ date: ridesDate }, { user_name: userId }] },
+    //WHERE date = ridesDATE AND user_name = userId
   });
   res.status(200).send(rides);
   //console.log(rides);
@@ -211,7 +211,3 @@ app.delete("/rides", async (req, res) => {
 // server.listen(port, hostname, () => {
 //   console.log(`Server running at http://${hostname}:${port}/`);
 // });
-<<<<<<< HEAD
-=======
-
->>>>>>> main
