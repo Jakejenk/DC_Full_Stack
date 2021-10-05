@@ -222,11 +222,44 @@ app.listen(3300, function () {
 // This is the start of the template engine calls
 app.get("/home", (req, res) => {
   res.render("home", {
-    locals: {
-      title: "Address Book App",
-    },
-    partials: {
-      head: "/partials/head",
-    },
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    // partials: {
+    //   head: "/partials/head",
+    // },
+  });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about-us", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    // partials: {
+    //   head: "/partials/head",
+    // },
+  });
+});
+
+app.get("/login", (req, res) => {
+  res.render("login", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    // partials: {
+    //   head: "/partials/head",
+    // },
+  });
+});
+
+app.get("/registration", (req, res) => {
+  res.render("registration", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    // partials: {
+    //   head: "/partials/head",
+    // },
   });
 });
