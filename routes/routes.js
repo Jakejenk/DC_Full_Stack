@@ -2,14 +2,14 @@
 
 const http = require("http");
 // const hostname = "cycling4life.herokuapp.com";
-// const port = 3000;
+// const port = 9000;
 const express = require("express");
 const app = express();
-const server = http.createServer(app);
-const es6Renderer = require('express-es6-template-engine');
-app.engine('html', es6Renderer);
-app.set('views', 'templates');
-app.set('view engine', 'html');
+//const server = http.createServer(app);
+const es6Renderer = require("express-es6-template-engine");
+app.engine("html", es6Renderer);
+app.set("views", "templates");
+app.set("view engine", "html");
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, Model, DataTypes } = require("sequelize");
@@ -161,6 +161,7 @@ app.delete("/users/:id", async (req, res) => {
   //console.log(users);
 });
 
+
 // get all rides for one user
 app.get("/rides/:user", async (req, res)  => {
   res.setHeader("Content-Type", "application/json");
@@ -168,7 +169,7 @@ app.get("/rides/:user", async (req, res)  => {
   console.log (rides);
   res.status(200).send("rides");
 });
-
+  
 // get a single ride
 app.get("/rides/:date_of_ride", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
@@ -208,7 +209,5 @@ app.delete("/rides", async (req, res) => {
   //console.log(rides);
 });
 
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
-
+// start the server listening for requests
+app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
