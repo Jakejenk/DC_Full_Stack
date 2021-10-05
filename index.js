@@ -51,8 +51,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-class User extends Model {}
-class Ride extends Model {}
+class User extends Model { }
+class Ride extends Model { }
 
 User.init(
   {
@@ -122,11 +122,36 @@ app.post("/users", async (req, res) => {
     email: req.body.email,
     password: req.body.password,
     skill_level: req.body.skill_level,
+  })
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    const user = { name: req.body.name, password: hashedPassword }
+    users.push(user)
+    res.status(201).send()
+  } catch {
+    res.status(500).send()
+  }
+    res.status(200).send("User added");
+    //console.log(users);
   });
 
-  res.status(200).send("User added");
-  //console.log(users);
-});
+// app.post('/users/login', async (req, res) => {
+//   const user = users.find(user => user.name === req.body.name)
+//   if (user == null) {
+//     return res.status(400).send('Cannot find user')
+//   }
+//   try {
+//     if(await bcrypt.compare(req.body.password, user.password)) {
+//       res.send('Success')
+//     } else {
+//       res.send('Not Allowed')
+//     }
+//   } catch {
+//     res.status(500).send()
+//   }
+// })
+
+
 
 // update a user
 app.put("/users/:id", async (req, res) => {
