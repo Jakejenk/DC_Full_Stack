@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Jakejenk/DC_Full_Stack#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "express-es6-template-engine": "^2.2.3",
     "pg": "^8.7.1",
