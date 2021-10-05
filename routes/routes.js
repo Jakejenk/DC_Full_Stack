@@ -1,15 +1,14 @@
 "use strict";
 
 const http = require("http");
-// const hostname = "cycling4life.herokuapp.com";
-// const port = 3000;
+
 const express = require("express");
 const app = express();
-const server = http.createServer(app);
-const es6Renderer = require('express-es6-template-engine');
-app.engine('html', es6Renderer);
-app.set('views', 'templates');
-app.set('view engine', 'html');
+//const server = http.createServer(app);
+const es6Renderer = require("express-es6-template-engine");
+app.engine("html", es6Renderer);
+app.set("views", "templates");
+app.set("view engine", "html");
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, Model, DataTypes } = require("sequelize");
@@ -208,6 +207,10 @@ app.delete("/rides", async (req, res) => {
   //console.log(rides);
 });
 
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
+// This is the way to start the server on heroku
+app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+
+// This is the way to start the server locally
+// app.listen(3300, function () {
+//   console.log("Server is running on localhost:3300");
 // });
