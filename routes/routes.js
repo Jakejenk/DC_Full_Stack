@@ -211,3 +211,8 @@ app.delete("/rides", async (req, res) => {
 
 // start the server listening for requests
 app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+
+// This is the way to start the server locally
+app.listen(3300, function () {
+  console.log("Server is running on localhost:3300");
+});
