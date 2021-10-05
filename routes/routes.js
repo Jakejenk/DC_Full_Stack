@@ -1,8 +1,7 @@
 "use strict";
 
 const http = require("http");
-// const hostname = "cycling4life.herokuapp.com";
-// const port = 9000;
+
 const express = require("express");
 const app = express();
 //const server = http.createServer(app);
@@ -50,8 +49,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-class User extends Model {}
-class Ride extends Model {}
+class User extends Model { }
+class Ride extends Model { }
 
 User.init(
   {
@@ -173,7 +172,6 @@ app.get("/rides", async (req, res) => {
 app.get("/rides/:date/:user", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let ridesDate = req.params["date"];
-  let userId = req.params["user"];
   const rides = await rides.findAll({
     where: { [op.and]: [{ date: ridesDate }, { user_name: userId }] },
     //WHERE date = ridesDATE AND user_name = userId
@@ -209,5 +207,10 @@ app.delete("/rides", async (req, res) => {
   //console.log(rides);
 });
 
-// start the server listening for requests
+// This is the way to start the server on heroku
 app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+
+// This is the way to start the server locally
+// app.listen(3300, function () {
+//   console.log("Server is running on localhost:3300");
+// });
