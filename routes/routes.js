@@ -170,7 +170,7 @@ app.get("/rides/:user", async (req, res)  => {
 });
 
 // get a single ride
-app.get("/rides/:date/:user", async (req, res) => {
+app.get("/rides/:date_of_ride", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let ridesDate = req.params["date"];
   let userId = req.params["user"];
@@ -187,10 +187,10 @@ app.post("/rides", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   await rides.create({
     user_name: req.body.user_name,
-    date: req.body.date,
-    location: req.body.location,
+    date_of_ride: req.body.date_of_ride,
+    location_of_ride: req.body.location_of_ride,
     distance: req.body.distance,
-    difficulty: req.body.difficulty,
+    difficulty_level: req.body.difficulty_level,
   });
 
   res.status(200).send("Ride added");
