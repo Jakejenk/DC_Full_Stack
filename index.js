@@ -308,6 +308,17 @@ app.get("/home", (req, res) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.render("home", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
+  });
+});
+
 app.get("/about", (req, res) => {
   res.render("about-us", {
     // locals: {
