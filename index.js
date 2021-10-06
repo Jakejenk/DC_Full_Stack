@@ -2,6 +2,7 @@
 
 const http = require("http");
 
+const bcrypt = require('bcrypt');
 const express = require("express");
 const app = express();
 //const server = http.createServer(app);
@@ -83,13 +84,49 @@ Ride.init(
   }
 );
 
-// get all users
-app.get("/", async (req, res) => {
+// get for loggin in users 
+app.get("/loginAttempt", async (req, res) => {
+  const user = users.find(user => user.name === req.body.name)
+  if (user == null) {
+    return res.status(400).send('Cannot find user')
+  }
+  try {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      res.send('Success')
+    } else {
+      res.send('Not Allowed')
+    }
+  } catch {
+    res.status(500).send()
+  }
+});
+
+// add a user
+app.post("/registration", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const users = await User.findAll();
-  console.log(users);
-  res.status(200).send(users);
-  //console.log(users);
+  // const salt = await bcrypt.genSalt(10);
+  bcrypt.genSalt(10, (err, salt) => {
+    const hash = bcrypt.hash(req.body.password, salt, (err, hash) => {
+      if (!err) {
+        User.create({
+          user_name: req.body.user_name,
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          email: req.body.email,
+          password: hash,
+          skill_level: req.body.skill_level,
+        });
+        res.status(200).send("User added");
+        //console.log(users);
+      }
+    });
+  })
+  // try {
+  //   // users.push(user)
+  //   res.status(201).send()
+  // } catch {
+  //   res.status(404).send()
+  // }
 });
 
 // get all users
@@ -111,47 +148,6 @@ app.get("/users/:id", async (req, res) => {
   res.status(200).send(users);
   //console.log(users);
 });
-
-// add a user
-app.post("/users", async (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  await User.create({
-    user_name: req.body.user_name,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    skill_level: req.body.skill_level,
-  })
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    const user = { name: req.body.name, password: hashedPassword }
-    users.push(user)
-    res.status(201).send()
-  } catch {
-    res.status(500).send()
-  }
-    res.status(200).send("User added");
-    //console.log(users);
-  });
-
-// app.post('/users/login', async (req, res) => {
-//   const user = users.find(user => user.name === req.body.name)
-//   if (user == null) {
-//     return res.status(400).send('Cannot find user')
-//   }
-//   try {
-//     if(await bcrypt.compare(req.body.password, user.password)) {
-//       res.send('Success')
-//     } else {
-//       res.send('Not Allowed')
-//     }
-//   } catch {
-//     res.status(500).send()
-//   }
-// })
-
-
 
 // update a user
 app.put("/users/:id", async (req, res) => {
@@ -235,13 +231,13 @@ app.delete("/rides", async (req, res) => {
 });
 
 // // This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+// app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 // This is the way to start the server locally
-// app.listen(3300, function () {
-//   console.log("Server is running on localhost:3300");
-// });
-
+app.listen(3300, function () {
+  console.log("Server is running on localhost:3300");
+});
+//
 //
 
 // This is the start of the template engine calls
@@ -250,9 +246,9 @@ app.get("/home", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    partials: {
-      navbar: "partials/navbar",
-    },
+    // partials: {
+    //   head: "/partials/head",
+    // },
   });
 });
 
@@ -261,9 +257,9 @@ app.get("/about", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    partials: {
-      navbar: "partials/navbar",
-    },
+    // partials: {
+    //   head: "/partials/head",
+    // },
   });
 });
 
