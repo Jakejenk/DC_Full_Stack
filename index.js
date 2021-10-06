@@ -302,6 +302,7 @@ app.get("/home", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
+      head: "partials/head"
     },
   });
 });
@@ -313,6 +314,7 @@ app.get("/", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
+      head: "partials/head"
     },
   });
 });
@@ -324,6 +326,7 @@ app.get("/about", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
+      head: "partials/head"
     },
   });
 });
@@ -335,6 +338,7 @@ app.get("/login", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
+      head: "partials/head"
     },
   });
 });
@@ -346,8 +350,7 @@ app.get("/registration", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
+      head: "partials/head"
     },
   });
 });
-
-// app.use("../assets/img/", express.static("../assets/img/"));
