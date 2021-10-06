@@ -2,7 +2,7 @@
 
 const http = require("http");
 
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const express = require("express");
 const app = express();
 //const server = http.createServer(app);
@@ -24,6 +24,8 @@ app.set("view engine", "html");
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, "templates")));
 
 let sequelize;
 if (config.use_env_variable) {
@@ -52,8 +54,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-class User extends Model { }
-class Ride extends Model { }
+class User extends Model {}
+class Ride extends Model {}
 
 User.init(
   {
@@ -84,20 +86,20 @@ Ride.init(
   }
 );
 
-// get for loggin in users 
+// get for loggin in users
 app.get("/loginAttempt", async (req, res) => {
-  const user = users.find(user => user.name === req.body.name)
+  const user = users.find((user) => user.name === req.body.name);
   if (user == null) {
-    return res.status(400).send('Cannot find user')
+    return res.status(400).send("Cannot find user");
   }
   try {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      res.send('Success')
+      res.send("Success");
     } else {
-      res.send('Not Allowed')
+      res.send("Not Allowed");
     }
   } catch {
-    res.status(500).send()
+    res.status(500).send();
   }
 });
 
@@ -120,7 +122,7 @@ app.post("/registration", async (req, res) => {
         //console.log(users);
       }
     });
-  })
+  });
   // try {
   //   // users.push(user)
   //   res.status(201).send()
@@ -148,6 +150,45 @@ app.get("/users/:id", async (req, res) => {
   res.status(200).send(users);
   //console.log(users);
 });
+
+// add a user
+app.post("/users", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  await User.create({
+    user_name: req.body.user_name,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    password: req.body.password,
+    skill_level: req.body.skill_level,
+  });
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const user = { name: req.body.name, password: hashedPassword };
+    users.push(user);
+    res.status(201).send();
+  } catch {
+    res.status(500).send();
+  }
+  res.status(200).send("User added");
+  //console.log(users);
+});
+
+// app.post('/users/login', async (req, res) => {
+//   const user = users.find(user => user.name === req.body.name)
+//   if (user == null) {
+//     return res.status(400).send('Cannot find user')
+//   }
+//   try {
+//     if(await bcrypt.compare(req.body.password, user.password)) {
+//       res.send('Success')
+//     } else {
+//       res.send('Not Allowed')
+//     }
+//   } catch {
+//     res.status(500).send()
+//   }
+// })
 
 // update a user
 app.put("/users/:id", async (req, res) => {
@@ -237,6 +278,7 @@ app.delete("/rides", async (req, res) => {
 app.listen(3300, function () {
   console.log("Server is running on localhost:3300");
 });
+
 //
 //
 
@@ -246,9 +288,9 @@ app.get("/home", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
 
@@ -257,9 +299,9 @@ app.get("/about", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
 
@@ -268,9 +310,9 @@ app.get("/login", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
 
@@ -279,8 +321,10 @@ app.get("/registration", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
+
+// app.use("../assets/img/", express.static("../assets/img/"));
