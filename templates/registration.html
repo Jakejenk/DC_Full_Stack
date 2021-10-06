@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="./style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/fb87154b99.js" crossorigin="anonymous"></script>
+  <script src="./userloginregister.js"></script>
+  <link rel="shortcut icon" type="image/jpg" href="./assets/img/favicon.png" />
+
 </head>
 
 <body>
@@ -32,7 +35,7 @@
             <label class="control-label">Username</label>
             <div class="input-group">
               <span class="p-2 icon-border"><i class="fas fa-user"></i></span>
-              <input name="username" placeholder="Usernmane" class="form-control" type="text" id="usernName">
+              <input name="username" placeholder="Usernmane" class="form-control" type="text" id="userName">
             </div>
           </div>
           <!-- First Name input-->
@@ -41,7 +44,7 @@
             <label class="control-label">First Name</label>
             <div class="input-group">
               <span class="p-2 icon-border"><i class="fas fa-user"></i></span>
-              <input name="first_name" placeholder="First Name" class="form-control" type="text" id="firsName">
+              <input name="first_name" placeholder="First Name" class="form-control" type="text" id="firstName">
             </div>
           </div>
 
@@ -106,7 +109,7 @@
           <div class="form-group pb-3">
             <label class="control-label"></label>
             <div class="text-center"><br>
-              <button type="submit" class="btn btn-primary" onclick=registeruser(registration-form)> SUBMIT <span><i class="far fa-paper-plane"></i></span></button>
+              <button type="submit" class="btn btn-primary" id="register-button" onclick="registerUser()"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button>
             </div>
           </div>
         </form>
@@ -121,7 +124,6 @@
 
 </body>
 
-<script src="./userloginregister.js"></script>
 
 
 </html>
