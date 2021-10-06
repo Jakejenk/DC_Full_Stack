@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       date_of_ride: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       distance: {
         type: Sequelize.INTEGER
