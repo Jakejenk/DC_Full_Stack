@@ -1,5 +1,8 @@
+// FOR TESTING LOCALLY, USE "http://localhost:3300/registration" IN THE FETCH
+// WHEN DOING A GIT POST, CHANGE BACK TO "https://cycling4life.herokuapp.com/registration" IN THE FETCH
+
 const registerUser = function() {
-  fetch("http://localhost:3300/registration", {
+  fetch("https://cycling4life.herokuapp.com/registration", {
       method: "POST",
       headers: {
         Accept: "application/json",
