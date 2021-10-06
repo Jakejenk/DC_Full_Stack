@@ -1,42 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="shortcut icon" type="image/jpg" href="./assets/img/favicon.png" />
-
-    <!-- datepicker test -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-    <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
-    <!-- Bootstrap Date-Picker Plugin -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-    <!-- end test -->
-
-    <title>Cycling 4 Lyfe</title>
-    <!-- <script>
-        $(document).ready(function () {
-            var date_input = $('input[name="date"]'); //our date input has the name "date"
-            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-            var options = {
-                format: 'yyyy-mm-dd',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-            };
-            date_input.datepicker(options);
-        })
-    </script> -->
-</head>
 
 <body>
+    ${head}
     ${navbar}
     <section class="text-dark p-4" id="mainPage">
         <h1 class="text-center text-primary pb-5 mb-5">Cycling 4 Lyfe</h1>
@@ -147,10 +114,5 @@
         </div>
     </section>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-
-<script src="../index.js"></script>
-<!-- <script src="./home.js"></script> -->
-
 
 </html>
