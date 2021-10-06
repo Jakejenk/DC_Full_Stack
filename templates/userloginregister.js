@@ -10,4 +10,4 @@ const registerUser = fetch ("cycle4life.heroku.com/login", {
     })
 })
 document.getElementById("register-button").addEventListener("click",
- registerUser);
+ console.log("clicked"))
