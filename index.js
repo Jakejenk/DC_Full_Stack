@@ -294,16 +294,6 @@ app.delete("/rides", async (req, res) => {
 });
 
 
-// // This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
-
-//This is the way to start the server locally
-// app.listen(3300, function () {
-// console.log("Server is running on localhost:3300");
-// });
-
-//
-
 // This is the start of the template engine calls
 app.get("/home", (req, res) => {
   res.render("home", {
