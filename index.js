@@ -243,7 +243,7 @@ app.get("/rides", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const rideData = await Ride.findAll();
   // console.log(rideData);
-  res.status(200).send('rideData');
+  res.status(200).send(rideData);
 });
 
 // get a single ride
