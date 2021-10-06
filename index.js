@@ -288,9 +288,9 @@ app.get("/home", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
 
@@ -299,9 +299,9 @@ app.get("/about", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
 
