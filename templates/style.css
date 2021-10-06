@@ -31,3 +31,21 @@
     border: 1px solid #9C9C9C;
     background-color: #EAEAEA;
   } */
+
+.bg-light-gray {
+      background-color: #EAEAEA !important;
+}
+
+.icon-border {
+  border-color: lightgray;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10%;
+  background-color: lightgray;
+}
+
+.show-border {
+  border-radius: 1px;
+  border-style: solid;
+  border-color: red;
+}
