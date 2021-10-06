@@ -89,12 +89,12 @@ Ride.init({
 // USE THIS CODE TO CHOOSE BETWEEN HEROKU SERVER AND EXPRESS SERVER
 
 // This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+// app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 // This is the way to start the server locally
-// app.listen(3300, function() {
-//   console.log("Server is running on localhost:3300");
-// });
+app.listen(3300, function() {
+  console.log("Server is running on localhost:3300");
+});
 
 // get for loggin in users
 app.get("/loginAttempt", async (req, res) => {
