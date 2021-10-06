@@ -21,7 +21,7 @@
     <!-- end test -->
 
     <title>Cycling 4 Lyfe</title>
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             var date_input = $('input[name="date"]'); //our date input has the name "date"
             var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
@@ -33,7 +33,7 @@
             };
             date_input.datepicker(options);
         })
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -61,7 +61,7 @@
                                 <label class="control-label" for="date">Date of Ride: </label>
                             </div>
                             <div class="col-md-3">
-                                <input class="form-control" id="date_of_ride" name="date" placeholder="yyyy-mm-dd" type="date" />
+                                <input class="form-control" id="date_of_ride" name="date_of_ride" type="date" placeholder="yyyy-mm-dd" />
                             </div>
                             <div class="col-md-3">
                                 <p>Distance:</p>
@@ -88,15 +88,15 @@
                             <div class="col-md-9">
                                 <div class="input-group has-validation" id="difficulty_level">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="difficulty_level" value="Easy">
+                                        <input class="form-check-input" type="checkbox" id="difficulty_level" name="difficulty_level" value="Easy">
                                         <label class="form-check-label" for="inlineCheckbox1">Easy</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="difficulty_level" value="Intermediate">
+                                        <input class="form-check-input" type="checkbox" id="difficulty_level" name="difficulty_level" value="Intermediate">
                                         <label class="form-check-label" for="inlineCheckbox2">Moderate</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="difficulty_level" value="Hard">
+                                        <input class="form-check-input" type="checkbox" id="difficulty_level" name="difficulty_level" value="Hard">
                                         <label class="form-check-label" for="inlineCheckbox3">Hard</label>
                                     </div>
                                 </div>

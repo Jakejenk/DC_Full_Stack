@@ -89,10 +89,10 @@ Ride.init({
 // USE THIS CODE TO CHOOSE BETWEEN HEROKU SERVER AND EXPRESS SERVER
 
 // This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+// app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 // This is the way to start the server locally
-// app.listen(3300, function () {
+// app.listen(3300, function() {
 //   console.log("Server is running on localhost:3300");
 // });
 
@@ -252,7 +252,11 @@ app.get("/rides/:date_of_ride/:user_name", async (req, res) => {
   let ridesDate = req.params["date_of_ride"];
   const rides = await rides.findAll({
 
-    where: { [op.and]: [{ date: ridesDate }] },
+    where: {
+      [op.and]: [{
+        date: ridesDate
+      }]
+    },
 
     //WHERE date = ridesDATE AND user_name = userId
   });
@@ -295,7 +299,7 @@ app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 //This is the way to start the server locally
 // app.listen(3300, function () {
-  // console.log("Server is running on localhost:3300");
+// console.log("Server is running on localhost:3300");
 // });
 
 //
