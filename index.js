@@ -242,22 +242,18 @@ app.delete("/users/:id", async (req, res) => {
 app.get("/rides", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const rideData = await Ride.findAll();
-  console.log(rideData);
-  res.status(200).send(rideData);
+  // console.log(rideData);
+  res.status(200).send('rideData');
 });
 
 // get a single ride
-app.get("/rides/:date/:user", async (req, res) => {
+app.get("/rides/:date_of_ride/:user_name", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let ridesDate = req.params["date"];
+  let ridesDate = req.params["date_of_ride"];
   const rides = await rides.findAll({
-    where: {
-      [op.and]: [{
-        date: ridesDate
-      }, {
-        user_name: userId
-      }]
-    },
+
+    where: { [op.and]: [{ date: ridesDate }] },
+
     //WHERE date = ridesDATE AND user_name = userId
   });
   res.status(200).send(rides);
@@ -268,16 +264,16 @@ app.get("/rides/:date/:user", async (req, res) => {
 
 app.post("/rides", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  await rides.create({
+  await Ride.create({
     user_name: req.body.user_name,
     date_of_ride: req.body.date_of_ride,
-    location: req.body.location,
+    location_of_ride: req.body.location_of_ride,
     distance: req.body.distance,
-    difficulty: req.body.difficulty,
+    difficulty_level: req.body.difficulty_level,
   });
 
   res.status(200).send("Ride added");
-  //console.log();
+  // console.log(rides);
 });
 
 // delete a ride
@@ -293,7 +289,15 @@ app.delete("/rides", async (req, res) => {
   //console.log(rides);
 });
 
-//
+
+// // This is the way to start the server on heroku
+app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+
+//This is the way to start the server locally
+// app.listen(3300, function () {
+  // console.log("Server is running on localhost:3300");
+// });
+
 //
 
 // This is the start of the template engine calls

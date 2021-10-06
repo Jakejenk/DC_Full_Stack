@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Ride.init({
     user_name: DataTypes.STRING,
-    date_of_ride: DataTypes.DATE,
+    date_of_ride: DataTypes.DATEONLY,
     distance: DataTypes.INTEGER,
     location_of_ride: DataTypes.STRING,
     difficulty_level: DataTypes.STRING
