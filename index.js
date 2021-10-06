@@ -24,6 +24,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, "templates")));
+
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -51,8 +53,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-class User extends Model { }
-class Ride extends Model { }
+class User extends Model {}
+class Ride extends Model {}
 
 User.init(
   {
@@ -122,18 +124,18 @@ app.post("/users", async (req, res) => {
     email: req.body.email,
     password: req.body.password,
     skill_level: req.body.skill_level,
-  })
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    const user = { name: req.body.name, password: hashedPassword }
-    users.push(user)
-    res.status(201).send()
-  } catch {
-    res.status(500).send()
-  }
-    res.status(200).send("User added");
-    //console.log(users);
   });
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const user = { name: req.body.name, password: hashedPassword };
+    users.push(user);
+    res.status(201).send();
+  } catch {
+    res.status(500).send();
+  }
+  res.status(200).send("User added");
+  //console.log(users);
+});
 
 // app.post('/users/login', async (req, res) => {
 //   const user = users.find(user => user.name === req.body.name)
@@ -150,8 +152,6 @@ app.post("/users", async (req, res) => {
 //     res.status(500).send()
 //   }
 // })
-
-
 
 // update a user
 app.put("/users/:id", async (req, res) => {
@@ -235,12 +235,12 @@ app.delete("/rides", async (req, res) => {
 });
 
 // // This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+// app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 // This is the way to start the server locally
-// app.listen(3300, function () {
-//   console.log("Server is running on localhost:3300");
-// });
+app.listen(3300, function () {
+  console.log("Server is running on localhost:3300");
+});
 
 //
 
@@ -272,9 +272,9 @@ app.get("/login", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
 
@@ -283,8 +283,10 @@ app.get("/registration", (req, res) => {
     // locals: {
     //   title: "Address Book App",
     // },
-    // partials: {
-    //   head: "/partials/head",
-    // },
+    partials: {
+      navbar: "partials/navbar",
+    },
   });
 });
+
+// app.use("../assets/img/", express.static("../assets/img/"));
