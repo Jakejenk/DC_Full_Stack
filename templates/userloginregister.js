@@ -2,7 +2,7 @@
 // WHEN DOING A GIT POST, CHANGE BACK TO "https://cycling4life.herokuapp.com/registration" IN THE FETCH
 
 const registerUser1 = function() {
-  fetch("http://localhost:3300/registrationAttempt", {
+  fetch("https://cycling4life.herokuapp.com/registrationAttempt", {
       method: "POST",
       headers: {
         // Accept: "application/json",
@@ -22,17 +22,17 @@ const registerUser1 = function() {
 };
 
 const loginUser1 = function() {
-    fetch("http://localhost:3300/loginAttempt", {
-        method: "POST",
-        headers: {
-          // Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          "email": document.getElementById("email").value,
-          "password": document.getElementById("password").value,
-        }),
-      })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  };
+  fetch("https://cycling4life.herokuapp.com/loginAttempt", {
+      method: "POST",
+      headers: {
+        // Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "email": document.getElementById("email").value,
+        "password": document.getElementById("password").value,
+      }),
+    })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
+};
