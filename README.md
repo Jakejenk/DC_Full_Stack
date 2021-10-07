@@ -8,6 +8,9 @@
     -PostgreSQL
     -bcrypt
     -Express ES6 Template Engine
+    
+## Scrum Tool 
+- Jira 
 
 ## Install
 
