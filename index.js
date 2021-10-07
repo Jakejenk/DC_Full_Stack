@@ -60,8 +60,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-class User extends Model { }
-class Ride extends Model { }
+class User extends Model {}
+class Ride extends Model {}
 
 User.init({
   user_name: DataTypes.STRING,
@@ -89,13 +89,13 @@ Ride.init({
 // USE THIS CODE TO CHOOSE BETWEEN HEROKU SERVER AND EXPRESS SERVER
 
 // This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+// app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 
 // This is the way to start the server locally
-// app.listen(3300, function () {
-//   console.log("Server is running on localhost:3300");
-// });
+app.listen(3300, function() {
+  console.log("Server is running on localhost:3300");
+});
 
 // post for Login
 app.post("/loginAttempt", async (req, res) => {
@@ -104,21 +104,22 @@ app.post("/loginAttempt", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   User.findOne({
-    where: {
-      email: email
-    }
-  },
-    console.log("checkpoint2")
-  )
+        where: {
+          email: email
+        }
+      },
+      console.log("checkpoint2")
+    )
     .then((user) => {
       bcrypt.compare(password, user.password, (error, result) => {
         if (result == true) {
           //window.location = "/home.html";
           res.redirect(307, '/home.html');
           console.log("success");
-        }
-        else {
-          res.json({ success: false });
+        } else {
+          res.json({
+            success: false
+          });
           console.log("failed Login");
         }
       })
