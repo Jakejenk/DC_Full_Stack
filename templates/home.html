@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
         .data-grid {
@@ -10,7 +11,6 @@
             row-gap: 20px;
             grid-template-columns: auto auto auto auto auto;
         }
-
     </style>
 </head>
 
@@ -23,12 +23,12 @@
         <div class="container-fluid" id="mainBody">
             <div class="row">
                 <div class="col-md-3 border border-secondary">
-                    <div class="card">
-                        <img src="./assets/img/13207.jpeg" class="card-img-top" alt="No image" style="max-width: 50%;" />
+                    <div class="card text-center bg-light-gray border-0">
+                        <img src="./assets/img/boy-on-bike.jpg" class="card-img-top pt-5 ps-5 pe-5" alt="Boy on bike" />
                         <div class="card-body">
-                            <h5 class="card-title" id="userId">JohnQ</h5>
-                            <p class="card-text">Age</p>
-                            <p class="card-text">Skill Level</p>
+                            <h5 class="card-title pb-2" id="userId">John Q</h5>
+                            <p class="card-text">Age: 28</p>
+                            <p class="card-text">Skill Level: Intermediate</p>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                             <button class="btn btn-primary" type="submit" onclick="loadTotalDistance()">Distance</button>
                         </div>
                     </form>
-                    <form> 
+                    <form>
                         <!-- action="/rides/:date_of_ride" method="GET"> -->
 
                         <div class="row p-1">
@@ -154,23 +154,22 @@
                         </div>
                     </div>
 
-
                 </div>
                 <div class="col-md-9 border border-secondary" class="data-grid">
-                    <div class="row" style="text-align: left;">
-                        <div class="col-md-2"></div>User
-                        <div class="col-md-2"></div>Date
-                        <div class="col-md-2"></div>Distance
-                        <div class="col-md-2"></div>Location
-                        <div class="col-md-2"></div>Difficulty
+                    <div class="row text-center">
+                        <div class="col-md-2 h5 m-3">User</div>
+                        <div class="col-md-2 h5 m-3">Date</div>
+                        <div class="col-md-2 h5 m-3">Distance</div>
+                        <div class="col-md-2 h5 m-3">Location</div>
+                        <div class="col-md-2 h5 m-3">Difficulty</div>
                     </div>
-                    
-                    <div class="row" id="displayDiv" style="text-align: center;">
-                        <div class="col-md-2" id="nameDiv"></div>
-                        <div class="col-md-2" id="dateDiv"></div>
-                        <div class="col-md-2" id="distanceDiv"></div>
-                        <div class="col-md-2" id="locationDiv"></div>
-                        <div class="col-md-2" id="difficultyDiv"></div>
+
+                    <div class="row text-center" id="displayDiv">
+                        <div class="col-md-2 m-3" id="nameDiv"></div>
+                        <div class="col-md-2 m-3" id="dateDiv"></div>
+                        <div class="col-md-2 m-3" id="distanceDiv"></div>
+                        <div class="col-md-2 m-3" id="locationDiv"></div>
+                        <div class="col-md-2 m-3" id="difficultyDiv"></div>
                     </div>
                 </div>
             </div>

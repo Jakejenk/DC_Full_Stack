@@ -126,7 +126,7 @@ app.post("/loginAttempt", async (req, res) => {
     })
 });
 
-// add a user
+// register a user
 app.post("/registrationAttempt", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   // const salt = await bcrypt.genSalt(10);
@@ -142,8 +142,6 @@ app.post("/registrationAttempt", async (req, res) => {
           skill_level: req.body.skill_level,
         })
         // users.push(User);
-        res.redirect("/home.html");
-        console.log("user was registered");
       }
     });
   });
