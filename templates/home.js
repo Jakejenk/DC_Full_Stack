@@ -70,7 +70,9 @@ function loadTotalDistance() {
     
         for (let i = 0 ; i < length ; i++) {
             
-            // let oneDistance = rideData[i]['distance'];
+            let oneDistance = rideData[i]['distance'];
+
+            
             const row3Div = document.getElementById("distanceDiv");
 
             let distanceDiv = document.createElement("div");
