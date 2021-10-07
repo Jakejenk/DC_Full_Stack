@@ -11,7 +11,7 @@
 
       </div>
       <div class="col-md-6">
-        <form class="bg-light-gray" action="/DC_Full_Stack/templates/registration.html " method="post" id="registration_form">
+        <form class="bg-light-gray" id="registration_form">
           <fieldset>
 
             <!-- Form Name -->
@@ -20,14 +20,14 @@
             </div>
 
 
-            <!-- First Name input-->
+            <!-- Username Name input-->
 
             <div class="form-group pb-1 ps-3 pe-3">
               <label class="control-label">Email</label>
               <div class="">
                 <div class="input-group">
                   <span class="p-2 icon-border"><i class="fas fa-user"></i></span>
-                  <input name="first_name" placeholder="Enter Email" class="form-control" type="text">
+                  <input name="first_name" placeholder="Enter Email" class="form-control" type="text" id="email">
                 </div>
               </div>
             </div>
@@ -39,31 +39,28 @@
               <div class="">
                 <div class="input-group">
                   <span class="p-2 icon-border"><i class="fas fa-unlock"></i></span>
-                  <input name="last_name" placeholder="Enter Password" class="form-control" type="text">
+                  <input name="last_name" placeholder="Enter Password" class="form-control" type="text" id="password">
                 </div>
               </div>
             </div>
 
-            <!-- Success message -->
-            <div class="alert alert-success" role="alert" id="success_message">Success <i class="fas fa-thumbs-up"></i> Success!.</div>
+            <!-- Success message
+            <div class="alert alert-success" role="alert" id="success_message">Success <i class="fas fa-thumbs-up"></i> Success!.</div> -->
 
             <!-- Button -->
             <div class="form-group pb-3">
               <label class="control-label"></label>
               <div class="text-center"><br>
-                <button type="submit" class="btn btn-primary" id="register-button">SUBMIT <span><i class="far fa-paper-plane"></i></span></button>
+                <!-- <button type="submit" class="btn btn-primary" id="register-button" onclick="registerUser()"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button> -->
+                <button type="submit" class="btn btn-primary" id="register-button" onclick="loginUser1()"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button>
               </div>
             </div>
-
-            <div class="row col-md-3">
-
-            </div>
-
           </fieldset>
         </form>
       </div>
     </div>
   </div>
+  <script src="./userloginregister.js"></script>
 </body>
 
 </html>
