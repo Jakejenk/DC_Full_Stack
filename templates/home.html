@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <style>
+        .data-grid {
+            display: grid;
+            text-align: center;
+            margin: auto;
+            background-color: white;
+            row-gap: 20px;
+            grid-template-columns: auto auto auto auto auto;
+        }
+
+    </style>
+</head>
 
 
 <body>
@@ -88,16 +101,18 @@
                     </form>
                     <form action="/rides/:distance" method="GET">
                         <div class="row p-3">
-                            <button class="btn btn-primary" type="submit" onclick="">Distance</button>
+                            <button class="btn btn-primary" type="submit" onclick="loadTotalDistance()">Distance</button>
                         </div>
                     </form>
-                    <form action="/rides/2021-10-21" method="GET">
+                    <form> 
+                        <!-- action="/rides/:date_of_ride" method="GET"> -->
+
                         <div class="row p-1">
                             <div class="col-md-7">
-                                <input class="form-control" id="date_of_ride" name="date_of_ride" placeholder="yyyy-mm-dd" type="text" />
+                                <input class="form-control" id="rideDate" placeholder="yyyy-mm-dd" type="text">
                             </div>
                             <div class="col-md-5">
-                                <button class="btn btn-primary" type="submit" onclick="dateFunction()">Submit</button>
+                                <button class="btn btn-primary" type="button" onclick="dateFunction()">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -107,8 +122,22 @@
                 <div class="col-md-3 border border-secondary">
                     <p>Place Holder</p>
                 </div>
-                <div class="col-md-9 border border-secondary">
-                    <div id="displayDiv" class="data-grid"></div>
+                <div class="col-md-9 border border-secondary" class="data-grid">
+                    <div class="row" style="text-align: left;">
+                        <div class="col-md-2"></div>User
+                        <div class="col-md-2"></div>Date
+                        <div class="col-md-2"></div>Distance
+                        <div class="col-md-2"></div>Location
+                        <div class="col-md-2"></div>Difficulty
+                    </div>
+                    
+                    <div class="row" id="displayDiv" style="text-align: center;">
+                        <div class="col-md-2" id="nameDiv"></div>
+                        <div class="col-md-2" id="dateDiv"></div>
+                        <div class="col-md-2" id="distanceDiv"></div>
+                        <div class="col-md-2" id="locationDiv"></div>
+                        <div class="col-md-2" id="difficultyDiv"></div>
+                    </div>
                 </div>
             </div>
         </div>
