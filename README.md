@@ -11,6 +11,8 @@
 
 ## Install
 
+    git clone https://github.com/Jakejenk/DC_Full_Stack.git
+
     npm install (installs all dependencies)
 
 ## Run
