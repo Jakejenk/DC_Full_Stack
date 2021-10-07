@@ -2,7 +2,7 @@
 // WHEN DEPLOYING TO HEROKU, CHANGE BACK TO "https://cycling4life.herokuapp.com" IN THE FETCH
 
 const registerUser1 = function() {
-  fetch("https://cycling4life.herokuapp.com/registrationAttempt", {
+  fetch("http://localhost:3300/registrationAttempt", {
       method: "POST",
       headers: {
         // Accept: "application/json",
@@ -22,7 +22,7 @@ const registerUser1 = function() {
 };
 
 const loginUser1 = function() {
-  fetch("https://cycling4life.herokuapp.com/loginAttempt", {
+  fetch("http://localhost:3300/loginAttempt", {
       method: "POST",
       headers: {
         // Accept: "application/json",

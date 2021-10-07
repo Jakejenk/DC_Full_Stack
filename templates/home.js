@@ -1,6 +1,6 @@
 function loadRideData() {
   // e.preventDefault();
-  fetch("https://cycling4life.herokuapp.com/rides")
+  fetch("http://localhost:3300/rides")
     .then(res => res.json())
     .then(data => {
       let rideData = data;
