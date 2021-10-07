@@ -20,3 +20,19 @@ const registerUser1 = function() {
     .then((res) => res.json())
     .then((res) => console.log(res));
 };
+
+const loginUser1 = function() {
+    fetch("http://localhost:3300/loginAttempt", {
+        method: "POST",
+        headers: {
+          // Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "email": document.getElementById("email").value,
+          "password": document.getElementById("password").value,
+        }),
+      })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  };
