@@ -244,8 +244,16 @@ app.get("/rides", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const rideData = await Ride.findAll();
   // console.log(rideData);
-  res.status(200).send(rideData);
+  res.json(rideData);
 });
+
+// get your distance
+// app.get("/rides/:distance", async (req,res) => {
+//   res.setHeader("Content-Type", "application/json");
+//   let distanceRidden = req.params["distance"];
+//   const distance = await Ride.findAll();
+//   res.status(200).send(distance);
+// });
 
 // get a single ride
 app.get("/rides/:date_of_ride", async (req, res) => {
@@ -259,7 +267,7 @@ app.get("/rides/:date_of_ride", async (req, res) => {
 
     //WHERE date = ridesDATE AND user_name = userId
   });
-  res.status(200).send(rides);
+  // res.status(200).send(rides);
   //console.log(rides);
 });
 

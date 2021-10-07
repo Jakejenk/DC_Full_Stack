@@ -81,14 +81,14 @@
 
                 <div class="col-md-3 border border-secondary" style="text-align: center;">
                     <h3>Your Data</h3>
-                    <form action="/rides" method="GET">
+                    <!-- <form action="/rides" method="GET"> --><form>
                         <div class="row p-3">
-                            <button class="btn btn-primary" type="submit">Summary of Rides</button>
+                            <button class="btn btn-primary" type="button" onclick="loadRideData()">Summary of Rides</button>
                         </div>
                     </form>
-                    <form action="/rides/:distance/:user" method="GET">
+                    <form action="/rides/:distance" method="GET">
                         <div class="row p-3">
-                            <button class="btn btn-primary" type="submit" onclick="">Distance This Month</button>
+                            <button class="btn btn-primary" type="submit" onclick="">Distance</button>
                         </div>
                     </form>
                     <form action="/rides/2021-10-21" method="GET">
@@ -97,7 +97,7 @@
                                 <input class="form-control" id="date_of_ride" name="date_of_ride" placeholder="yyyy-mm-dd" type="text" />
                             </div>
                             <div class="col-md-5">
-                                <button class="btn btn-primary" type="submit" onclick="">Submit</button>
+                                <button class="btn btn-primary" type="submit" onclick="dateFunction()">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -113,6 +113,14 @@
             </div>
         </div>
     </section>
+    <script src="./home.js"></script>
+    <!-- <script>
+        function dateFunction() {
+            var x = document.getElementById("date_of_ride").value;
+            var z = ('action="rides/"') + x
+            document.getElementById("action").innerHTML = z;
+        }
+    </script> -->
 </body>
 
 </html>
