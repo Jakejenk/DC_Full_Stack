@@ -11,8 +11,6 @@
 
 ## Install
 
-    git clone https://github.com/Jakejenk/DC_Full_Stack.git
-
     npm install (installs all dependencies)
 
 ## Run
@@ -21,18 +19,18 @@
 
 ## Links
 
-- [Get started](https://react-hook-form.com/get-started)
-- [API](https://react-hook-form.com/api)
-- [Examples](https://github.com/bluebill1049/react-hook-form/tree/master/examples)
-- [Demo](https://react-hook-form.com)
-- [Form Builder](https://react-hook-form.com/form-builder)
-- [FAQs](https://react-hook-form.com/faqs)
+- [Main Page](https://cycling4life.herokuapp.com/)
+- [Login](https://cycling4life.herokuapp.com/login)
+- [Registration](https://cycling4life.herokuapp.com/registration)
+- [Home](https://cycling4life.herokuapp.com/home)
 
 
 ## Contributors
 
-Thanks go to these wonderful people! [[Become a contributor](CONTRIBUTING.md)].
+- Al Conlan 
+- Jake Jenkins 
+- Charles Eldridge
 
-<a href="https://github.com/react-hook-form/react-hook-form/graphs/contributors">
-  <img src="https://opencollective.com/react-hook-form/contributors.svg?width=890&button=false" />
+<a href="https://github.com/jakejenk/DC_Full_Stack/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=jakejenk/DC_Full_Stack" />
 </a>
