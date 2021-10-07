@@ -41,10 +41,10 @@
                             <div class="col-md-3">
                                 <label class="control-label" for="date">Date of Ride: </label>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <input class="form-control" id="date_of_ride" name="date_of_ride" type="date" placeholder="yyyy-mm-dd" />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <p>Distance:</p>
                             </div>
                             <div class="col-md-3">
@@ -108,9 +108,10 @@
                         <!-- action="/rides/:date_of_ride" method="GET"> -->
                         <div class="row p-1">
                             <div class="col-md-7">
-                                <input class="form-control" id="rideDate" placeholder="yyyy-mm-dd" type="text">
+                                <label class="control-label" for="date">Get a Ride </label>
+                                <input class="form-control" id="rideDate" placeholder="yyyy-mm-dd" type="date">
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 align-self-center">
                                 <button class="btn btn-primary" type="button" onclick="dateFunction()">Submit</button>
                             </div>
                         </div>
