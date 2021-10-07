@@ -89,17 +89,17 @@ Ride.init({
 // USE THIS CODE TO CHOOSE BETWEEN HEROKU SERVER AND EXPRESS SERVER
 
 // This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+// app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 
 // This is the way to start the server locally
-// app.listen(3300, function() {
-//   console.log("Server is running on localhost:3300");
-// });
+app.listen(3300, function() {
+  console.log("Server is running on localhost:3300");
+});
 
 // get for loggin in users
-app.get("/loginAttempt", async (req, res) => {
-  const user = users.find((user) => user.name === req.body.name);
+app.post("/loginAttempt", async (req, res) => {
+  const user = users.find((user) => user.name === req.body.userName);
   if (user == null) {
     return res.status(400).send("Cannot find user");
   }
@@ -115,7 +115,7 @@ app.get("/loginAttempt", async (req, res) => {
 });
 
 // add a user
-app.post("/registration", async (req, res) => {
+app.post("/registrationAttempt", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   // const salt = await bcrypt.genSalt(10);
   bcrypt.genSalt(10, (err, salt) => {
@@ -128,8 +128,9 @@ app.post("/registration", async (req, res) => {
           email: req.body.email,
           password: hash,
           skill_level: req.body.skill_level,
-        });
-        res.status(200).send("User added");
+        })
+        // users.push(User);
+        res.redirect("/login");
         console.log("user was registered");
       }
     });
@@ -164,31 +165,31 @@ app.get("/users/:id", async (req, res) => {
   //console.log(users);
 });
 
-// add a user
-app.post("/users", async (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  await User.create({
-    user_name: req.body.user_name,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    skill_level: req.body.skill_level,
-  });
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const user = {
-      name: req.body.name,
-      password: hashedPassword
-    };
-    users.push(user);
-    res.status(201).send();
-  } catch {
-    res.status(500).send();
-  }
-  res.status(200).send("User added");
-  //console.log(users);
-});
+// // add a user
+// app.post("/users", async (req, res) => {
+//   res.setHeader("Content-Type", "application/json");
+//   await User.create({
+//     user_name: req.body.user_name,
+//     first_name: req.body.first_name,
+//     last_name: req.body.last_name,
+//     email: req.body.email,
+//     password: req.body.password,
+//     skill_level: req.body.skill_level,
+//   });
+//   try {
+//     const hashedPassword = await bcrypt.hash(req.body.password, 10);
+//     const user = {
+//       name: req.body.name,
+//       password: hashedPassword
+//     };
+//     users.push(user);
+//     res.status(201).send();
+//   } catch {
+//     res.status(500).send();
+//   }
+//   res.status(200).send("User added");
+//   //console.log(users);
+// });
 
 // app.post('/users/login', async (req, res) => {
 //   const user = users.find(user => user.name === req.body.name)
