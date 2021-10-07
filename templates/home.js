@@ -1,7 +1,7 @@
 function loadRideData() {
 
   // e.preventDefault();
-  fetch("https://cycling4life.herokuapp.com/rides")
+  fetch("https://cycling4life.herokuapp.com")
 
     .then(res => res.json())
     .then(data => {
@@ -63,7 +63,7 @@ function loadRideData() {
 
 function loadTotalDistance() {
 
-  fetch("http://localhost:3300/rides")
+  fetch("https://cycling4life.herokuapp.com")
     .then(res => res.json())
     .then(data => {
       let rideData = data;
