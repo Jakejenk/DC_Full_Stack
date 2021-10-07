@@ -89,23 +89,23 @@ Ride.init({
 // USE THIS CODE TO CHOOSE BETWEEN HEROKU SERVER AND EXPRESS SERVER
 
 // This is the way to start the server on heroku
-// app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 
 // This is the way to start the server locally
-app.listen(3300, function() {
-  console.log("Server is running on localhost:3300");
-});
+// app.listen(3300, function() {
+//   console.log("Server is running on localhost:3300");
+// });
 
 // post for Login
 app.post("/loginAttempt", async (req, res) => {
   console.log("checkpoint 1");
   res.setHeader("Content-Type", "application/json");
-  const email = req.body.email;
+  const userName = req.body.user_name;
   const password = req.body.password;
   User.findOne({
         where: {
-          email: email
+          user_name: userName
         }
       },
       console.log("checkpoint2")
@@ -114,13 +114,13 @@ app.post("/loginAttempt", async (req, res) => {
       bcrypt.compare(password, user.password, (error, result) => {
         if (result == true) {
           //window.location = "/home.html";
-          res.redirect(307, '/home.html');
-          console.log("success");
+          res.redirect('/home');
+          window.alert("Login Successful");
         } else {
           res.json({
             success: false
           });
-          console.log("failed Login");
+          window.alert("Incorrect Username or Password");
         }
       })
     })
