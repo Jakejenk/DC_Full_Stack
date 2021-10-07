@@ -27,12 +27,6 @@
 - [FAQs](https://react-hook-form.com/faqs)
 
 
-
-<a href="https://ui.dev/bytes/?r=bill">
-  <img src="https://raw.githubusercontent.com/react-hook-form/react-hook-form/master/docs/ads-1.jpeg" />
-</a>
-
-
 ## Contributors
 
 Thanks go to these wonderful people! [[Become a contributor](CONTRIBUTING.md)].
