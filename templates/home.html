@@ -81,9 +81,9 @@
 
                 <div class="col-md-3 border border-secondary" style="text-align: center;">
                     <h3>Your Data</h3>
-                    <form action="/rides" method="GET">
+                    <!-- <form action="/rides" method="GET"> --><form>
                         <div class="row p-3">
-                            <button class="btn btn-primary" type="submit">Summary of Rides</button>
+                            <button class="btn btn-primary" type="button" onclick="loadRideData()">Summary of Rides</button>
                         </div>
                     </form>
                     <form action="/rides/:distance" method="GET">
@@ -113,6 +113,7 @@
             </div>
         </div>
     </section>
+    <script src="./home.js"></script>
     <!-- <script>
         function dateFunction() {
             var x = document.getElementById("date_of_ride").value;
