@@ -1,5 +1,5 @@
-// FOR TESTING LOCALLY, USE "http://localhost:3300/registration" IN THE FETCH
-// WHEN DOING A GIT POST, CHANGE BACK TO "https://cycling4life.herokuapp.com/registration" IN THE FETCH
+// FOR TESTING LOCALLY, USE "http://localhost:3300" IN THE FETCH
+// WHEN DEPLOYING TO HEROKU, CHANGE BACK TO "https://cycling4life.herokuapp.com" IN THE FETCH
 
 const registerUser1 = function() {
   fetch("https://cycling4life.herokuapp.com/registrationAttempt", {
