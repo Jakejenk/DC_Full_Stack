@@ -30,17 +30,17 @@
 
 ## Links
 
-- [Main Page](https://cycling4life.herokuapp.com/)
-- [Login](https://cycling4life.herokuapp.com/login)
-- [Registration](https://cycling4life.herokuapp.com/registration)
-- [Home](https://cycling4life.herokuapp.com/home)
+- [Main Page](https://cycling4life.herokuapp.com/) - https://cycling4life.herokuapp.com/
+- [Login](https://cycling4life.herokuapp.com/login) - https://cycling4life.herokuapp.com/login
+- [Registration](https://cycling4life.herokuapp.com/registration) - https://cycling4life.herokuapp.com/registration
+- [Home](https://cycling4life.herokuapp.com/home) - https://cycling4life.herokuapp.com/home
 
 
 ## Contributors
 
-- Al Conlan 
-- Jake Jenkins 
-- Charles Eldridge
+- Al Conlan  (Databases, Templating, Floating Coding GURU)
+- Jake Jenkins (Login, Registration, Jira/Repo Setup)
+- Charles Eldridge - (Main page, including ride database interaction)
 
 <a href="https://github.com/jakejenk/DC_Full_Stack/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=jakejenk/DC_Full_Stack" />
