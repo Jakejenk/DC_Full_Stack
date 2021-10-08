@@ -115,12 +115,12 @@ app.post("/loginAttempt", async (req, res) => {
         if (result == true) {
           //window.location = "/home.html";
           res.redirect('/home');
-          window.alert("Login Successful");
+          //window.alert("Login Successful");
         } else {
           res.json({
             success: false
           });
-          window.alert("Incorrect Username or Password");
+          //window.alert("Incorrect Username or Password");
         }
       })
     })
@@ -216,13 +216,6 @@ app.get("/rides", async (req, res) => {
   res.json(rideData);
 });
 
-// get your distance
-// app.get("/rides/:distance", async (req,res) => {
-//   res.setHeader("Content-Type", "application/json");
-//   let distanceRidden = req.params["distance"];
-//   const distance = await Ride.findAll();
-//   res.status(200).send(distance);
-// });
 
 // get a single ride
 app.get("/rides/:date_of_ride", async (req, res) => {
