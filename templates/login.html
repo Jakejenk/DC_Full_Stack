@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <body>
   ${head}
   ${navbar}
@@ -11,7 +10,7 @@
 
       </div>
       <div class="col-md-6">
-        <form class="bg-light-gray" id="registration_form">
+        <form action="/loginAttempt" method="POST" class="bg-light-gray" id="registration_form">
           <fieldset>
 
             <!-- Form Name -->
@@ -52,7 +51,11 @@
               <label class="control-label"></label>
               <div class="text-center"><br>
                 <!-- <button type="submit" class="btn btn-primary" id="register-button" onclick="registerUser()"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button> -->
-                <button type="submit" class="btn btn-primary" id="register-button" onclick="loginUser1()"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button>
+                <!-- <button type="submit" class="btn btn-primary" id="register-button" onclick="loginUser1()"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button> -->
+                <button type="submit" class="btn btn-primary" id="register-button"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button>
+                <div id="wrong-login-alert" hidden>
+                  <p class="bg-danger text-light" id="alert-message">The email & password combination is incorrect. Please try again.</p>
+                </div>
               </div>
             </div>
           </fieldset>
@@ -60,7 +63,7 @@
       </div>
     </div>
   </div>
-  <script src="./userloginregister.js"></script>
+  <!-- <script src="./userloginregister.js"></script> -->
 </body>
 
 </html>
