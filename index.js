@@ -111,7 +111,7 @@ app.post("/loginAttempt", async (req, res) => {
         throw err;
       } else if (!isMatch) {
         console.log("Password doesn't match!");
-        console.log(document.body);
+        // console.log(document.body);
         // const alertDiv = document.getElementById("wrong-login-alert");
         // alertDiv.hidden = false;
       } else {
