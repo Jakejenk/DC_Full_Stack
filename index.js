@@ -15,6 +15,12 @@ const config = require("./config/config.json")[env];
 const db = {};
 const bodyParser = require("body-parser");
 
+// Start server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running at port ` + port);
+});
+
 // Set up es6 Template Engine
 const es6Renderer = require("express-es6-template-engine");
 app.engine("html", es6Renderer);
@@ -90,16 +96,6 @@ Ride.init(
   }
 );
 
-// USE THIS CODE TO CHOOSE BETWEEN HEROKU SERVER AND EXPRESS SERVER
-
-// This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
-
-// This is the way to start the server locally
-// app.listen(3300, function () {
-//   console.log("Server is running on localhost:3300");
-// });
-
 // post for Login
 app.post("/loginAttempt", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
@@ -121,7 +117,7 @@ app.post("/loginAttempt", async (req, res) => {
       } else {
         console.log("Password matches!");
         // alert("Login Successful!"); Doesn't work
-        res.redirect("https://cycling4life.herokuapp.com/home");
+        res.redirect("http://localhost:3000/home");
         console.log("redirect hit");
       }
     });
