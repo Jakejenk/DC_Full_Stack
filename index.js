@@ -117,8 +117,7 @@ app.post("/loginAttempt", async (req, res) => {
       } else {
         console.log("Password matches!");
         // alert("Login Successful!"); Doesn't work
-        res.redirect("http://localhost:3000/home");
-        console.log("redirect hit");
+        res.redirect("/home");
       }
     });
   });
