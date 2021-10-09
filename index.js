@@ -115,10 +115,11 @@ app.post("/loginAttempt", async (req, res) => {
         throw err;
       } else if (!isMatch) {
         console.log("Password doesn't match!");
-        // res.status(403).send({ message: "Access denied" }); // Doesn't work
+        console.log(document.body);
+        // const alertDiv = document.getElementById("wrong-login-alert");
+        // alertDiv.hidden = false;
       } else {
         console.log("Password matches!");
-        // res.send("Hello User!"); // Doesn't work
         // alert("Login Successful!"); Doesn't work
         res.redirect("https://cycling4life.herokuapp.com/home");
         console.log("redirect hit");
