@@ -8,11 +8,7 @@ const app = express();
 //const server = http.createServer(app);
 const fs = require("fs");
 const path = require("path");
-const {
-  Sequelize,
-  Model,
-  DataTypes
-} = require("sequelize");
+const { Sequelize, Model, DataTypes } = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require("./config/config.json")[env];
@@ -26,9 +22,11 @@ app.set("views", "templates");
 app.set("view engine", "html");
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "templates")));
@@ -63,73 +61,75 @@ module.exports = db;
 class User extends Model {}
 class Ride extends Model {}
 
-User.init({
-  user_name: DataTypes.STRING,
-  first_name: DataTypes.STRING,
-  last_name: DataTypes.STRING,
-  email: DataTypes.STRING,
-  password: DataTypes.STRING,
-  skill_level: DataTypes.STRING,
-}, {
-  sequelize,
-  modelName: "User",
-});
+User.init(
+  {
+    user_name: DataTypes.STRING,
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    skill_level: DataTypes.STRING,
+  },
+  {
+    sequelize,
+    modelName: "User",
+  }
+);
 
-Ride.init({
-  user_name: DataTypes.STRING,
-  date_of_ride: DataTypes.DATE,
-  distance: DataTypes.INTEGER,
-  location_of_ride: DataTypes.STRING,
-  difficulty_level: DataTypes.STRING,
-}, {
-  sequelize,
-  modelName: "Ride",
-});
+Ride.init(
+  {
+    user_name: DataTypes.STRING,
+    date_of_ride: DataTypes.DATE,
+    distance: DataTypes.INTEGER,
+    location_of_ride: DataTypes.STRING,
+    difficulty_level: DataTypes.STRING,
+  },
+  {
+    sequelize,
+    modelName: "Ride",
+  }
+);
 
 // USE THIS CODE TO CHOOSE BETWEEN HEROKU SERVER AND EXPRESS SERVER
 
 // This is the way to start the server on heroku
 app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
-
 // This is the way to start the server locally
-// app.listen(3300, function() {
+// app.listen(3300, function () {
 //   console.log("Server is running on localhost:3300");
 // });
 
 // post for Login
 app.post("/loginAttempt", async (req, res) => {
-  console.log("checkpoint 1");
   res.setHeader("Content-Type", "application/json");
   const userName = req.body.user_name;
   const password = req.body.password;
   User.findOne({
-        where: {
-          user_name: userName
-        }
-      },
-      console.log("checkpoint2")
-    )
-    .then((user) => {
-      bcrypt.compare(password, user.password, (error, result) => {
-        if (result == true) {
-          //window.location = "/home.html";
-          res.redirect('/home');
-          //window.alert("Login Successful");
-        } else {
-          res.json({
-            success: false
-          });
-          //window.alert("Incorrect Username or Password");
-        }
-      })
-    })
+    where: {
+      user_name: userName,
+    },
+  }).then((user) => {
+    bcrypt.compare(password, user.password, function (err, isMatch) {
+      if (err) {
+        throw err;
+      } else if (!isMatch) {
+        console.log("Password doesn't match!");
+        // res.status(403).send({ message: "Access denied" }); // Doesn't work
+      } else {
+        console.log("Password matches!");
+        // res.send("Hello User!"); // Doesn't work
+        // alert("Login Successful!"); Doesn't work
+        res.redirect("https://cycling4life.herokuapp.com/home");
+        console.log("redirect hit");
+      }
+    });
+  });
 });
 
 // register a user
 app.post("/registrationAttempt", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  // const salt = await bcrypt.genSalt(10);
   bcrypt.genSalt(10, (err, salt) => {
     const hash = bcrypt.hash(req.body.password, salt, (err, hash) => {
       if (!err) {
@@ -140,17 +140,10 @@ app.post("/registrationAttempt", async (req, res) => {
           email: req.body.email,
           password: hash,
           skill_level: req.body.skill_level,
-        })
-        // users.push(User);
+        });
       }
     });
   });
-  // try {
-  //   // users.push(user)
-  //   res.status(201).send()
-  // } catch {
-  //   res.status(404).send()
-  // }
 });
 
 // get all users
@@ -168,7 +161,7 @@ app.get("/users/:id", async (req, res) => {
   let userId = req.params["id"];
   const users = await User.findAll({
     where: {
-      id: userId
+      id: userId,
     },
   });
   res.status(200).send(users);
@@ -179,18 +172,21 @@ app.get("/users/:id", async (req, res) => {
 app.put("/users/:id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let userId = req.params["id"];
-  const users = await User.update({
-    user_name: req.body.user_name,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    skill_level: req.body.skill_level,
-  }, {
-    where: {
-      id: userId,
+  const users = await User.update(
+    {
+      user_name: req.body.user_name,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      password: req.body.password,
+      skill_level: req.body.skill_level,
     },
-  });
+    {
+      where: {
+        id: userId,
+      },
+    }
+  );
   res.status(200).send("User updated");
   //console.log(users);
 });
@@ -201,7 +197,7 @@ app.delete("/users/:id", async (req, res) => {
   let userId = req.params["id"];
   const users = await User.destroy({
     where: {
-      id: userId
+      id: userId,
     },
   });
   res.status(200).send("User was deleted");
@@ -216,15 +212,13 @@ app.get("/rides", async (req, res) => {
   res.json(rideData);
 });
 
-
 // get a single ride
 app.get("/rides/:date_of_ride", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let ridesDate = req.params["date_of_ride"];
   const rides = await Ride.findAll({
-
     where: {
-      date_of_ride: ridesDate
+      date_of_ride: ridesDate,
     },
 
     //WHERE date = ridesDATE AND user_name = userId
@@ -255,13 +249,12 @@ app.delete("/rides", async (req, res) => {
   let ridesId = req.params["id"];
   const rides = await rides.destroy({
     where: {
-      id: ridesId
+      id: ridesId,
     },
   });
   res.status(200).send("Ride was deleted");
   //console.log(rides);
 });
-
 
 // This is the start of the template engine calls
 app.get("/home", (req, res) => {
@@ -271,7 +264,7 @@ app.get("/home", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
-      head: "partials/head"
+      head: "partials/head",
     },
   });
 });
@@ -283,7 +276,7 @@ app.get("/", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
-      head: "partials/head"
+      head: "partials/head",
     },
   });
 });
@@ -295,7 +288,7 @@ app.get("/about", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
-      head: "partials/head"
+      head: "partials/head",
     },
   });
 });
@@ -307,7 +300,7 @@ app.get("/login", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
-      head: "partials/head"
+      head: "partials/head",
     },
   });
 });
@@ -319,7 +312,7 @@ app.get("/registration", (req, res) => {
     // },
     partials: {
       navbar: "partials/navbar",
-      head: "partials/head"
+      head: "partials/head",
     },
   });
 });
