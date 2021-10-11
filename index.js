@@ -67,34 +67,28 @@ module.exports = db;
 class User extends Model {}
 class Ride extends Model {}
 
-User.init(
-  {
-    user_name: DataTypes.STRING,
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    skill_level: DataTypes.STRING,
-  },
-  {
-    sequelize,
-    modelName: "User",
-  }
-);
+User.init({
+  user_name: DataTypes.STRING,
+  first_name: DataTypes.STRING,
+  last_name: DataTypes.STRING,
+  email: DataTypes.STRING,
+  password: DataTypes.STRING,
+  skill_level: DataTypes.STRING,
+}, {
+  sequelize,
+  modelName: "User",
+});
 
-Ride.init(
-  {
-    user_name: DataTypes.STRING,
-    date_of_ride: DataTypes.DATE,
-    distance: DataTypes.INTEGER,
-    location_of_ride: DataTypes.STRING,
-    difficulty_level: DataTypes.STRING,
-  },
-  {
-    sequelize,
-    modelName: "Ride",
-  }
-);
+Ride.init({
+  user_name: DataTypes.STRING,
+  date_of_ride: DataTypes.DATEONLY,
+  distance: DataTypes.INTEGER,
+  location_of_ride: DataTypes.STRING,
+  difficulty_level: DataTypes.STRING,
+}, {
+  sequelize,
+  modelName: "Ride",
+});
 
 // post for Login
 app.post("/loginAttempt", (req, res) => {
@@ -206,19 +200,35 @@ app.get("/rides", async (req, res) => {
 });
 
 // get a single ride
-app.get("/rides/:date_of_ride", async (req, res) => {
+app.get('/rides/:date_of_ride', async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let ridesDate = req.params["date_of_ride"];
-  const rides = await Ride.findAll({
+  const dateId = req.params['date_of_ride'];
+  console.log(dateId);
+  const singleRide = await Ride.findOne({
     where: {
-      date_of_ride: ridesDate,
+      date_of_ride: dateId
     },
-
-    //WHERE date = ridesDATE AND user_name = userId
   });
-  // res.status(200).send(rides);
-  //console.log(rides);
+  res.status(200).send(singleRide);
+  //console.log(users);
 });
+
+
+
+
+
+//   res.send(200).send(singleRide);
+//   // {
+
+//   //   where: {
+//   //     ridesDate: ridesDate
+//   //   },
+
+//   //   //WHERE date = ridesDATE AND user_name = userId
+//   // });
+//   // res.status(200).send(rides);
+//   // //console.log(rides);
+// });
 
 // post a new ride
 
