@@ -139,19 +139,20 @@ app.post("/registrationAttempt", async (req, res) => {
   });
 });
 
-// delete a ride
-app.delete("/deleteRide", async (req, res) => {
+// delete Ride - WORKING IN POSTMAN
+app.delete("/deleteRide", (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let userName = req.params["user_name"];
-  let date = req.params["date_of_ride"]
-  const rides = await rides.destroy({
+  const user_name = req.body.user_name;
+  const location_of_ride = req.body.location_of_ride;
+  // console.log(user_name);
+  // console.log(location_of_ride)
+  Ride.destroy({
     where: {
-      userName: user_name,
-      date: date_of_ride
-    },
-  });
-  res.status(200).send("Ride was deleted");
-  //console.log(rides);
+      user_name: user_name,
+      location_of_ride: location_of_ride
+    }
+  })
+  res.status(200).send("Ride Deleted");
 });
 
 // get all users

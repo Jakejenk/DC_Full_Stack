@@ -124,17 +124,18 @@
                     </form>
 
                     <!-- Delete Ride  -->
-                    <form>
-                        <div class="row p-3">
-                            <label class="control-label">Delete A ride </label>
-                            <input class="form-control" id="user_name" placeholder="user name" type="text">
-                            <input class="form-control" id="date_of_ride" placeholder="date_of_ride" type="date">
-
-                        </div>
-                        <div class="row text-center">
-                            <button class="btn btn-primary" type="button" onclick=deleteRide1()>Submit</button>
-                        </div>
-                    </form>
+                  <form action=/deleteRide method="DELETE">
+                    <div class="row p-3">
+                        <label class="control-label">Delete A ride </label>
+                        <input name ="user_name"class="form-control" placeholder="user_name" id="user_name" type="text">
+                        <input name="location_of_ride" class="form-control" placeholder="location_of_ride" id="location_of_ride" type="text">
+                    </div>
+                    <div class="row text-center">
+                        <button class="btn btn-primary" type="submit" onclick="deleteRide()">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
                 </div>
             </div>
             <div class="row">
