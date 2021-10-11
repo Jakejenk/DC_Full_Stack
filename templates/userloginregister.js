@@ -22,7 +22,7 @@ async function loginUser() {
   await fetch("http://localhost:3000/loginAttempt", {
       method: "POST",
       headers: {
-        // Accept: "application/json",
+        // "Accept": "text/html",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -30,8 +30,28 @@ async function loginUser() {
         password: document.getElementById("password").value,
       }),
     })
-    .then(response => console.log(response.json()))
-    .then(json => console.log(json));
+    .then(res => res.json())
+    .then(res => console.log(res))
+    .then((res) => {
+      const loginAlert = document.getElementById("wrong-login-alert");
+      loginAlert.hidden = false;
+      console.log("TEST");
+    })
+  // .then(response => console.log(response.json()))
+  // .then((response) => {
+  //   response.json().then((data) => {
+  //     console.log(data)
+  //   })
+  // })
+  // .then(response => {
+  //   if (!response.ok) {
+  //     throw new Error('Network response was not ok.')
+  //   }
+  // })
+  // .then(data => {
+  //   console.log(data.json())
+  // })
+  // .then(json => console.log(json));
 }
 
 function deleteRide() {
