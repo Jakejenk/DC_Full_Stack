@@ -1,5 +1,32 @@
-// // FOR TESTING LOCALLY, USE "http://localhost:3000" IN THE FETCH
-// // WHEN DEPLOYING TO HEROKU, CHANGE BACK TO "http://localhost:3000" IN THE FETCH
+function loginUser() {
+  axios
+    .post("http://localhost:3000/loginAttempt", {
+      user_name: document.getElementById("user_name").value,
+      password: document.getElementById("password").value,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+// function loginUser() {
+//   fetch("http://localhost:3000/loginAttempt", {
+//     method: "POST",
+//     headers: {
+//       // Accept: "application/json",
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       user_name: document.getElementById("user_name").value,
+//       password: document.getElementById("password").value,
+//     }),
+//   }).then((res) => {
+//     console.log(res);
+//   });
+// }
 
 // const registerUser1 = function () {
 //   fetch("http://localhost:3000/registrationAttempt", {
@@ -18,21 +45,6 @@
 //     }),
 //   })
 //     .then((res) => res.json())
-//     .then((res) => console.log(res));
-// };
 
-// const loginUser1 = function () {
-//   fetch("http://localhost:3000/loginAttempt", {
-//     method: "POST",
-//     headers: {
-//       // Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       user_name: document.getElementById("user_name").value,
-//       password: document.getElementById("password").value,
-//     }),
-//   })
-//     .then((res) => res.json())
 //     .then((res) => console.log(res));
 // };
