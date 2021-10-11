@@ -97,7 +97,7 @@ Ride.init(
 );
 
 // post for Login
-app.post("/loginAttempt", async (req, res) => {
+app.post("/loginAttempt", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const userName = req.body.user_name;
   const password = req.body.password;
@@ -110,14 +110,11 @@ app.post("/loginAttempt", async (req, res) => {
       if (err) {
         throw err;
       } else if (!isMatch) {
+        res.send("THIS IS A TEST");
         console.log("Password doesn't match!");
-        // console.log(document.body);
-        // const alertDiv = document.getElementById("wrong-login-alert");
-        // alertDiv.hidden = false;
       } else {
-        console.log("Password matches!");
-        // alert("Login Successful!"); Doesn't work
         res.redirect("/home");
+        console.log("Password matches!");
       }
     });
   });
