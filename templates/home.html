@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
         .data-grid {
@@ -10,7 +11,6 @@
             row-gap: 20px;
             grid-template-columns: auto auto auto auto auto;
         }
-
     </style>
 </head>
 
@@ -23,12 +23,12 @@
         <div class="container-fluid" id="mainBody">
             <div class="row">
                 <div class="col-md-3 border border-secondary">
-                    <div class="card">
-                        <img src="./assets/img/13207.jpeg" class="card-img-top" alt="No image" style="max-width: 50%;" />
+                    <div class="card text-center bg-light-gray border-0">
+                        <img src="./assets/img/boy-on-bike.jpg" class="card-img-top pt-5 ps-5 pe-5" alt="Boy on bike" />
                         <div class="card-body">
-                            <h5 class="card-title" id="userId">JohnQ</h5>
-                            <p class="card-text">Age</p>
-                            <p class="card-text">Skill Level</p>
+                            <h5 class="card-title pb-2" id="userId">John Q</h5>
+                            <p class="card-text">Age: 28</p>
+                            <p class="card-text">Skill Level: Intermediate</p>
                         </div>
                     </div>
                 </div>
@@ -70,10 +70,10 @@
                             </div>
                         </div>
                         <div class="row p-2">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <p>Difficulty Level:</p>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="input-group has-validation" id="difficulty_level">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" id="difficulty_level" name="difficulty_level" value="Easy">
@@ -108,9 +108,9 @@
                         </div>
                     </form>
                     <form action="/rides/:distance" method="GET">
-                        <div class="row p-3">
+                        <!-- <div class="row p-3">
                             <button class="btn btn-primary" type="submit" onclick="loadTotalDistance()">Distance</button>
-                        </div>
+                        </div> -->
                     </form>
                     <!-- <form action="/rides/:user_name" method="GET"> -->
                     <form>
@@ -132,7 +132,7 @@
                             <img src="./assets/img/usa-cycling-logo.png" alt="">
                         </div>
                         <div class="col-md-6  p-3">
-                            <a href="https://usacycling.org/">
+                            <a href="https://usacycling.org/" target="_blank">
                                 <h6>USA Cycling</h6>
                             </a>
                         </div>
@@ -142,7 +142,7 @@
                             <img src="./assets/img/zwift-logo.png" alt="">
                         </div>
                         <div class="col-md-6  p-3">
-                            <a href="https://www.zwift.com/">
+                            <a href="https://www.zwift.com/" target="_blank">
                                 <h6>Zwift</h6>
                             </a>
                         </div>
@@ -152,12 +152,11 @@
                             <img src="./assets/img/tmbra-logo.png" alt="">
                         </div>
                         <div class="col-md-6  p-3">
-                            <a href="https://www.tmbra.org/">
+                            <a href="https://www.tmbra.org/" target="_blank">
                                 <h6>TMBRA</h6>
                             </a>
                         </div>
                     </div>
-
 
                 </div>
                 <div class="col-md-9 border border-secondary" class="data-grid">

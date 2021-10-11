@@ -1,10 +1,8 @@
 function loadRideData() {
-
   // e.preventDefault();
-  fetch("http://localhost:3300/rides")
-
-    .then(res => res.json())
-    .then(data => {
+  fetch("http://localhost:3000/rides")
+    .then((res) => res.json())
+    .then((data) => {
       let rideData = data;
 
       console.log(rideData);
@@ -37,35 +35,33 @@ function loadRideData() {
         const row5Div = document.getElementById("difficultyDiv");
 
         let nameDiv = document.createElement("div");
-        nameDiv.innerHTML = rideData[i]['user_name'];
+        nameDiv.innerHTML = rideData[i]["user_name"];
         //console.log(orgAPI[i]['user_name']);
         rowDiv.append(nameDiv);
 
         let dateDiv = document.createElement("div");
-        dateDiv.innerHTML = rideData[i]['date_of_ride'];
+        dateDiv.innerHTML = rideData[i]["date_of_ride"];
         row2Div.append(dateDiv);
 
         let distanceDiv = document.createElement("div");
-        distanceDiv.innerHTML = rideData[i]['distance'];
+        distanceDiv.innerHTML = rideData[i]["distance"];
         row3Div.append(distanceDiv);
 
         let locationDiv = document.createElement("div");
-        locationDiv.innerHTML = rideData[i]['location_of_ride'];
+        locationDiv.innerHTML = rideData[i]["location_of_ride"];
         row4Div.append(locationDiv);
 
         let difficultyDiv = document.createElement("div");
-        difficultyDiv.innerHTML = rideData[i]['difficulty_level'];
+        difficultyDiv.innerHTML = rideData[i]["difficulty_level"];
         row5Div.append(difficultyDiv);
-
-      };
+      }
     });
 }
 
 function loadTotalDistance() {
-
-  fetch("http://localhost:3300/rides")
-    .then(res => res.json())
-    .then(data => {
+  fetch("http://localhost:3000/rides")
+    .then((res) => res.json())
+    .then((data) => {
       let rideData = data;
       let length = rideData.length;
       console.log(rideData);
@@ -86,9 +82,7 @@ function loadTotalDistance() {
             distanceDiv.innerHTML = totalDistance;
             row3Div.append(distanceDiv);
       }
-
-
-    })
+    });
 }
 
 function userFunction() { // Capture form parameters for date of ride

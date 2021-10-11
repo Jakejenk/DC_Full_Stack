@@ -12,7 +12,7 @@
       </div>
       <div class="col-md-6">
 
-        <form class="bg-light-gray" id="registration_form">
+        <form action="/registrationAttempt" method="POST" class="bg-light-gray" id="registration_form">
 
           <!-- Form Name -->
           <div class="pt-3 pb-1">
@@ -24,7 +24,7 @@
             <label class="control-label">Username</label>
             <div class="input-group">
               <span class="p-2 icon-border"><i class="fas fa-user"></i></span>
-              <input name="username" placeholder="Usernmane" class="form-control" type="text" id="user_name">
+              <input name="user_name" placeholder="Username" class="form-control" type="text" id="user_name">
             </div>
           </div>
           <!-- First Name input-->
@@ -52,7 +52,7 @@
             <div class="selectContainer">
               <div class="input-group">
                 <span class="p-2 icon-border"><i class="fas fa-list"></i></span>
-                <select name="department" class="form-control selectpicker" id="skill_level">
+                <select name="skill_level" class="form-control selectpicker" id="skill_level">
                   <option value="">Select your Skill Level</option>
                   <option>Expert</option>
                   <option>Intermediate</option>
@@ -67,7 +67,7 @@
             <label class="control-label">Password</label>
             <div class="input-group">
               <span class="p-2 icon-border"><i class="fas fa-unlock"></i></span>
-              <input name="user_password" placeholder="Password" class="form-control" type="password" id="password">
+              <input name="password" placeholder="Password" class="form-control" type="password" id="password">
             </div>
           </div>
 
@@ -97,7 +97,7 @@
             <label class="control-label"></label>
             <div class="text-center"><br>
               <!-- <button type="submit" class="btn btn-primary" id="register-button" onclick="registerUser()"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button> -->
-              <button type="submit" class="btn btn-primary" id="register-button" onclick="registerUser1()"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button>
+              <button type="submit" class="btn btn-primary" id="register-button"> SUBMIT <span><i class="far fa-paper-plane"></i></span></button>
             </div>
           </div>
         </form>
