@@ -48,3 +48,19 @@ function loginUser() {
 
 //     .then((res) => console.log(res));
 // };
+
+  const deleteRide1 = function() {
+    fetch("http://127.0.0.1:5500/DC_Full_Stack/ridesDelete", {
+        method: "DELETE",
+        headers: {
+          // Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "date_of_ride": document.getElementById("date_of_ride").value,
+          "user_name": document.getElementById("user_name").value,
+        }),
+      })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  };
