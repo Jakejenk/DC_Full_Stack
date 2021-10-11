@@ -67,28 +67,34 @@ module.exports = db;
 class User extends Model {}
 class Ride extends Model {}
 
-User.init({
-  user_name: DataTypes.STRING,
-  first_name: DataTypes.STRING,
-  last_name: DataTypes.STRING,
-  email: DataTypes.STRING,
-  password: DataTypes.STRING,
-  skill_level: DataTypes.STRING,
-}, {
-  sequelize,
-  modelName: "User",
-});
+User.init(
+  {
+    user_name: DataTypes.STRING,
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    skill_level: DataTypes.STRING,
+  },
+  {
+    sequelize,
+    modelName: "User",
+  }
+);
 
-Ride.init({
-  user_name: DataTypes.STRING,
-  date_of_ride: DataTypes.DATEONLY,
-  distance: DataTypes.INTEGER,
-  location_of_ride: DataTypes.STRING,
-  difficulty_level: DataTypes.STRING,
-}, {
-  sequelize,
-  modelName: "Ride",
-});
+Ride.init(
+  {
+    user_name: DataTypes.STRING,
+    date_of_ride: DataTypes.DATEONLY,
+    distance: DataTypes.INTEGER,
+    location_of_ride: DataTypes.STRING,
+    difficulty_level: DataTypes.STRING,
+  },
+  {
+    sequelize,
+    modelName: "Ride",
+  }
+);
 
 // post for Login
 app.post("/loginAttempt", (req, res) => {
@@ -132,6 +138,23 @@ app.post("/registrationAttempt", async (req, res) => {
     });
   });
 });
+
+// Delete a ride
+function deleteRide() {
+  fetch("http://127.0.0.1:3000/deleteRide", {
+    method: "DELETE",
+    headers: {
+      // Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      date_of_ride: document.getElementById("date_of_ride").value,
+      user_name: document.getElementById("user_name").value,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
+}
 
 // get all users
 app.get("/users", async (req, res) => {
@@ -200,22 +223,18 @@ app.get("/rides", async (req, res) => {
 });
 
 // get a single ride
-app.get('/rides/:date_of_ride', async (req, res) => {
+app.get("/rides/:date_of_ride", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const dateId = req.params['date_of_ride'];
+  const dateId = req.params["date_of_ride"];
   console.log(dateId);
   const singleRide = await Ride.findOne({
     where: {
-      date_of_ride: dateId
+      date_of_ride: dateId,
     },
   });
   res.status(200).send(singleRide);
   //console.log(users);
 });
-
-
-
-
 
 //   res.send(200).send(singleRide);
 //   // {
