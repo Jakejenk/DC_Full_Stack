@@ -1,7 +1,7 @@
 function loadRideData() {
 
   // e.preventDefault();
-  fetch("https://cycling4life.herokuapp.com/rides")
+  fetch("http://localhost:3300/rides")
 
     .then(res => res.json())
     .then(data => {
@@ -69,59 +69,65 @@ function loadTotalDistance() {
       let rideData = data;
       let length = rideData.length;
       console.log(rideData);
+      let numArray = []
 
       for (let i = 0; i < length; i++) {
+          
+            
+            let oneDistance = rideData[i]['distance'];
+            let totalDistance = oneDistance
+            console.log(oneDistance);
+        
 
-        let oneDistance = rideData[i]['distance'];
 
+            const row3Div = document.getElementById("distanceDiv");
 
-        const row3Div = document.getElementById("distanceDiv");
-
-        let distanceDiv = document.createElement("div");
-        distanceDiv.innerHTML = rideData[i]['distance'];
-        row3Div.append(distanceDiv);
+            let distanceDiv = document.createElement("div");
+            distanceDiv.innerHTML = totalDistance;
+            row3Div.append(distanceDiv);
       }
 
 
     })
 }
 
-function dateFunction() { // Capture form parameters for date of ride
-  let dateValue = document.getElementById("rideDate").value;
-  let url = "/rides/" + dateValue;
-  console.log(dateValue);
+function userFunction() { // Capture form parameters for date of ride
+  let nameValue = document.getElementById("userName").value;
+  let url = "/rides/" + nameValue;
+  console.log(nameValue);
   console.log(url);
   fetch(url)
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
 
-  let soloRide = data;
+    let soloRide = data;
 
-  const rowDiv = document.getElementById("nameDiv");
-  const row2Div = document.getElementById("dateDiv");
-  const row3Div = document.getElementById("distanceDiv");
-  const row4Div = document.getElementById("locationDiv");
-  const row5Div = document.getElementById("difficultyDiv");
+    const rowDiv = document.getElementById("nameDiv");
+    const row2Div = document.getElementById("dateDiv");
+    const row3Div = document.getElementById("distanceDiv");
+    const row4Div = document.getElementById("locationDiv");
+    const row5Div = document.getElementById("difficultyDiv");
 
-  let nameDiv = document.createElement("div");
-  nameDiv.innerHTML = soloData[i]['user_name'];
-  //console.log(orgAPI[i]['user_name']);
-  rowDiv.append(nameDiv);
+    let nameDiv = document.createElement("div");
+    nameDiv.innerHTML = soloRide['user_name'];
+    //console.log(orgAPI[i]['user_name']);
+    rowDiv.append(nameDiv);
 
-  let dateDiv = document.createElement("div");
-  dateDiv.innerHTML = soloData[i]['date_of_ride'];
-  row2Div.append(dateDiv);
+    let dateDiv = document.createElement("div");
+    dateDiv.innerHTML = soloRide['date_of_ride'];
+    row2Div.append(dateDiv);
 
-  let distanceDiv = document.createElement("div");
-  distanceDiv.innerHTML = soloData[i]['distance'];
-  row3Div.append(distanceDiv);
+    let distanceDiv = document.createElement("div");
+    distanceDiv.innerHTML = soloRide['distance'];
+    row3Div.append(distanceDiv);
 
-  let locationDiv = document.createElement("div");
-  locationDiv.innerHTML = soloData[i]['location_of_ride'];
-  row4Div.append(locationDiv);
+    let locationDiv = document.createElement("div");
+    locationDiv.innerHTML = soloRide['location_of_ride'];
+    row4Div.append(locationDiv);
 
-  let difficultyDiv = document.createElement("div");
-  difficultyDiv.innerHTML = rideData[i]['difficulty_level'];
-  row5Div.append(difficultyDiv);
+    let difficultyDiv = document.createElement("div");
+    difficultyDiv.innerHTML = soloRide['difficulty_level'];
+    row5Div.append(difficultyDiv);
+    });
 
 }

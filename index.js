@@ -77,7 +77,7 @@ User.init({
 
 Ride.init({
   user_name: DataTypes.STRING,
-  date_of_ride: DataTypes.DATE,
+  date_of_ride: DataTypes.DATEONLY,
   distance: DataTypes.INTEGER,
   location_of_ride: DataTypes.STRING,
   difficulty_level: DataTypes.STRING,
@@ -89,13 +89,13 @@ Ride.init({
 // USE THIS CODE TO CHOOSE BETWEEN HEROKU SERVER AND EXPRESS SERVER
 
 // This is the way to start the server on heroku
-app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
+// app.listen(process.env.PORT || 8000, () => console.log("Server is running..."));
 
 
 // This is the way to start the server locally
-// app.listen(3300, function() {
-//   console.log("Server is running on localhost:3300");
-// });
+app.listen(3300, function() {
+  console.log("Server is running on localhost:3300");
+});
 
 // post for Login
 app.post("/loginAttempt", async (req, res) => {
@@ -227,20 +227,35 @@ app.get("/rides", async (req, res) => {
 // });
 
 // get a single ride
-app.get("/rides/:date_of_ride", async (req, res) => {
+app.get('/rides/:date_of_ride', async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let ridesDate = req.params["date_of_ride"];
-  const rides = await Ride.findAll({
-
+  const dateId = req.params['date_of_ride'];
+  console.log(dateId);
+  const singleRide = await Ride.findOne({
     where: {
-      date_of_ride: ridesDate
+      date_of_ride: dateId
     },
-
-    //WHERE date = ridesDATE AND user_name = userId
   });
-  // res.status(200).send(rides);
-  //console.log(rides);
+  res.status(200).send(singleRide);
+  //console.log(users);
 });
+
+
+
+
+
+//   res.send(200).send(singleRide);
+//   // {
+
+//   //   where: {
+//   //     ridesDate: ridesDate
+//   //   },
+
+//   //   //WHERE date = ridesDATE AND user_name = userId
+//   // });
+//   // res.status(200).send(rides);
+//   // //console.log(rides);
+// });
 
 // post a new ride
 
