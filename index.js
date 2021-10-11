@@ -8,7 +8,11 @@ const app = express();
 //const server = http.createServer(app);
 const fs = require("fs");
 const path = require("path");
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const {
+  Sequelize,
+  Model,
+  DataTypes
+} = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require("./config/config.json")[env];
@@ -67,37 +71,32 @@ module.exports = db;
 class User extends Model {}
 class Ride extends Model {}
 
-User.init(
-  {
-    user_name: DataTypes.STRING,
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    skill_level: DataTypes.STRING,
-  },
-  {
-    sequelize,
-    modelName: "User",
-  }
-);
+User.init({
+  user_name: DataTypes.STRING,
+  first_name: DataTypes.STRING,
+  last_name: DataTypes.STRING,
+  email: DataTypes.STRING,
+  password: DataTypes.STRING,
+  skill_level: DataTypes.STRING,
+}, {
+  sequelize,
+  modelName: "User",
+});
 
-Ride.init(
-  {
-    user_name: DataTypes.STRING,
-    date_of_ride: DataTypes.DATEONLY,
-    distance: DataTypes.INTEGER,
-    location_of_ride: DataTypes.STRING,
-    difficulty_level: DataTypes.STRING,
-  },
-  {
-    sequelize,
-    modelName: "Ride",
-  }
-);
+Ride.init({
+  user_name: DataTypes.STRING,
+  date_of_ride: DataTypes.DATEONLY,
+  distance: DataTypes.INTEGER,
+  location_of_ride: DataTypes.STRING,
+  difficulty_level: DataTypes.STRING,
+}, {
+  sequelize,
+  modelName: "Ride",
+});
 
 // post for Login
-app.post("/loginAttempt", (req, res) => {
+app.post("/loginAttempt", async (req, res) => {
+  console.log("/loginAttempt route hit");
   res.setHeader("Content-Type", "application/json");
   const userName = req.body.user_name;
   const password = req.body.password;
@@ -106,14 +105,15 @@ app.post("/loginAttempt", (req, res) => {
       user_name: userName,
     },
   }).then((user) => {
-    bcrypt.compare(password, user.password, function (err, isMatch) {
+    bcrypt.compare(password, user.password, function(err, isMatch) {
       if (err) {
         throw err;
       } else if (!isMatch) {
-        res.send("THIS IS A TEST");
         console.log("Password doesn't match!");
+        return res.status(201).send("NoMatch");
       } else {
-        res.redirect("/home");
+        // res.redirect("/home");
+        res.send("Match")
         console.log("Password matches!");
       }
     });
@@ -139,22 +139,20 @@ app.post("/registrationAttempt", async (req, res) => {
   });
 });
 
-// Delete a ride
-function deleteRide() {
-  fetch("http://127.0.0.1:3000/deleteRide", {
-    method: "DELETE",
-    headers: {
-      // Accept: "application/json",
-      "Content-Type": "application/json",
+// delete a ride
+app.delete("/deleteRide", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  let userName = req.params["user_name"];
+  let date = req.params["date_of_ride"]
+  const rides = await rides.destroy({
+    where: {
+      userName: user_name,
+      date: date_of_ride
     },
-    body: JSON.stringify({
-      date_of_ride: document.getElementById("date_of_ride").value,
-      user_name: document.getElementById("user_name").value,
-    }),
-  })
-    .then((res) => res.json())
-    .then((res) => console.log(res));
-}
+  });
+  res.status(200).send("Ride was deleted");
+  //console.log(rides);
+});
 
 // get all users
 app.get("/users", async (req, res) => {
@@ -182,21 +180,18 @@ app.get("/users/:id", async (req, res) => {
 app.put("/users/:id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let userId = req.params["id"];
-  const users = await User.update(
-    {
-      user_name: req.body.user_name,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      password: req.body.password,
-      skill_level: req.body.skill_level,
+  const users = await User.update({
+    user_name: req.body.user_name,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    password: req.body.password,
+    skill_level: req.body.skill_level,
+  }, {
+    where: {
+      id: userId,
     },
-    {
-      where: {
-        id: userId,
-      },
-    }
-  );
+  });
   res.status(200).send("User updated");
   //console.log(users);
 });
