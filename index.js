@@ -110,8 +110,9 @@ app.post("/loginAttempt", async (req, res) => {
         throw err;
       } else if (!isMatch) {
         return res.send('{"result": "No Match"}');
-      } else { // res.redirect("/home");
+      } else {
         return res.send('{"result": "Match"}');
+        res.redirect("/home");
       }
     });
   });
