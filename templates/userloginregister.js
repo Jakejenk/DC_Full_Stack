@@ -34,8 +34,7 @@ function loginUser() {
     }).then(res => (res.json()))
     .then(res => {
       if (res.isMatch === "false") {
-        const loginAlert = document.getElementById("wrong-login-alert");
-        loginAlert.hidden = false;
+        alert("The email & password combination is incorrect. Please try again.");
       } else if (res.isMatch === "true") {
         const userName = document.getElementById("user_name").value;
         sessionStorage.setItem("UserName", userName);
@@ -44,6 +43,35 @@ function loginUser() {
 
     })
 }
+
+function validateLogin() {
+  if (document.getElementById("user_name").value == "") {
+    alert("Please provide your username!");
+    document.getElementById("user_name").focus();
+    return false;
+  }
+  if (document.getElementById("password").value == "") {
+    alert("Please provide your Password!");
+    document.getElementById("password").focus();
+    return false;
+  } else {
+    loginUser();
+  }
+  //   if (document.myForm.Zip.value == "" || isNaN(document.myForm.Zip.value) ||
+  //     document.myForm.Zip.value.length != 5) {
+
+  //     alert("Please provide a zip in the format #####.");
+  //     document.myForm.Zip.focus();
+  //     return false;
+  //   }
+  //   if (document.myForm.Country.value == "-1") {
+  //     alert("Please provide your country!");
+  //     return false;
+  //   }
+  //   return (true);
+}
+
+
 
 function deleteRide() {
   // e.preventDefault();
