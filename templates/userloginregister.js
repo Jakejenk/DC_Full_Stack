@@ -40,8 +40,7 @@ function loginUser() {
       } else {
         const userName = document.getElementById("user_name").value;
         sessionStorage.setItem("UserName", userName);
-        const test = sessionStorage.getItem("UserName");
-        console.log(test);
+        window.location.replace("http://localhost:3000/");
       }
 
     })
