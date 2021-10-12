@@ -20,8 +20,8 @@ function registerUser() {
     .then((res) => console.log(res));
 }
 
-async function loginUser() {
-  await fetch("http://localhost:3000/loginAttempt", {
+function loginUser() {
+  fetch("http://localhost:3000/loginAttempt", {
       method: "POST",
       headers: {
         // "Accept": "text/html",
@@ -30,31 +30,48 @@ async function loginUser() {
       body: JSON.stringify({
         user_name: document.getElementById("user_name").value,
         password: document.getElementById("password").value,
-      }),
+      })
+    }).then(res => (res.json()))
+    .then(res => {
+      if (res.isMatch === "false") {
+        alert("The email & password combination is incorrect. Please try again.");
+      } else if (res.isMatch === "true") {
+        const userName = document.getElementById("user_name").value;
+        sessionStorage.setItem("UserName", userName);
+        window.location.replace("http://localhost:3000/");
+      }
+
     })
-    .then(res => res.json())
-    .then(res => console.log(res))
-    .then((res) => {
-      const loginAlert = document.getElementById("wrong-login-alert");
-      loginAlert.hidden = false;
-      console.log("TEST");
-    })
-  // .then(response => console.log(response.json()))
-  // .then((response) => {
-  //   response.json().then((data) => {
-  //     console.log(data)
-  //   })
-  // })
-  // .then(response => {
-  //   if (!response.ok) {
-  //     throw new Error('Network response was not ok.')
-  //   }
-  // })
-  // .then(data => {
-  //   console.log(data.json())
-  // })
-  // .then(json => console.log(json));
 }
+
+function validateLogin() {
+  if (document.getElementById("user_name").value == "") {
+    alert("Please provide your username!");
+    document.getElementById("user_name").focus();
+    return false;
+  }
+  if (document.getElementById("password").value == "") {
+    alert("Please provide your Password!");
+    document.getElementById("password").focus();
+    return false;
+  } else {
+    loginUser();
+  }
+  //   if (document.myForm.Zip.value == "" || isNaN(document.myForm.Zip.value) ||
+  //     document.myForm.Zip.value.length != 5) {
+
+  //     alert("Please provide a zip in the format #####.");
+  //     document.myForm.Zip.focus();
+  //     return false;
+  //   }
+  //   if (document.myForm.Country.value == "-1") {
+  //     alert("Please provide your country!");
+  //     return false;
+  //   }
+  //   return (true);
+}
+
+
 
 function deleteRide() {
   // const user_name = sessionStorage.getItem("UserName");
