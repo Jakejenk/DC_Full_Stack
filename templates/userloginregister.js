@@ -60,8 +60,8 @@ function deleteRide() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        location_of_ride: document.getElementById("location_of_ride").value,
-        user_name: document.getElementById("user_name").value,
+        location_of_ride: document.getElementById("location").value,
+        user_name: document.getElementById("rider").value,
       }),
     })
     .then(res => res.json())
