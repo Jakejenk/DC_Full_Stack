@@ -96,7 +96,6 @@ Ride.init({
 
 // post for Login
 app.post("/loginAttempt", async (req, res) => {
-  console.log("/loginAttempt route hit");
   res.setHeader("Content-Type", "application/json");
   const userName = req.body.user_name;
   const password = req.body.password;
@@ -109,10 +108,10 @@ app.post("/loginAttempt", async (req, res) => {
       if (err) {
         throw err;
       } else if (!isMatch) {
-        return res.send('{"result": "No Match"}');
+        return res.send('{"isMatch": "false"}');
       } else {
-        return res.send('{"result": "Match"}');
-        res.redirect("/home");
+        res.send('{"isMatch": "true"}');
+        // res.redirect("/home");
       }
     });
   });

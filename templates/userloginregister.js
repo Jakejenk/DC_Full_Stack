@@ -31,12 +31,20 @@ function loginUser() {
         user_name: document.getElementById("user_name").value,
         password: document.getElementById("password").value,
       })
-    }).then(r => r.json())
+    }) //.then(res => console.log(res.json()))
     .then(res => {
-      const loginAlert = document.getElementById("wrong-login-alert");
-      loginAlert.hidden = false;
+      console.log(res.json())
+      if (res.isMatch == "false") {
+        const loginAlert = document.getElementById("wrong-login-alert");
+        loginAlert.hidden = false;
+      } else {
+        const userName = document.getElementById("user_name").value;
+        sessionStorage.setItem("UserName", userName);
+        const test = sessionStorage.getItem("UserName");
+        console.log(test);
+      }
+
     })
-  // .then(res => console.log(res))
   // .then((res) => {
   //   const loginAlert = document.getElementById("wrong-login-alert");
   //   loginAlert.hidden = false;
