@@ -18,8 +18,8 @@ function registerUser() {
     .then((res) => console.log(res));
 }
 
-async function loginUser() {
-  await fetch("http://localhost:3000/loginAttempt", {
+function loginUser() {
+  fetch("http://localhost:3000/loginAttempt", {
       method: "POST",
       headers: {
         // "Accept": "text/html",
@@ -28,15 +28,18 @@ async function loginUser() {
       body: JSON.stringify({
         user_name: document.getElementById("user_name").value,
         password: document.getElementById("password").value,
-      }),
-    })
-    .then(res => res.json())
-    .then(res => console.log(res))
-    .then((res) => {
+      })
+    }).then(r => r.json())
+    .then(res => {
       const loginAlert = document.getElementById("wrong-login-alert");
       loginAlert.hidden = false;
-      console.log("TEST");
     })
+  // .then(res => console.log(res))
+  // .then((res) => {
+  //   const loginAlert = document.getElementById("wrong-login-alert");
+  //   loginAlert.hidden = false;
+  //   console.log("TEST");
+  // })
   // .then(response => console.log(response.json()))
   // .then((response) => {
   //   response.json().then((data) => {

@@ -109,12 +109,9 @@ app.post("/loginAttempt", async (req, res) => {
       if (err) {
         throw err;
       } else if (!isMatch) {
-        console.log("Password doesn't match!");
-        return res.send("NoMatch");
-        res.json(req.body.errors);
+        return res.send('{"result": "No Match"}');
       } else { // res.redirect("/home");
-        res.send("Match")
-        console.log("Password matches!");
+        return res.send('{"result": "Match"}');
       }
     });
   });
