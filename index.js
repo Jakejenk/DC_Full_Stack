@@ -141,8 +141,8 @@ app.delete("/deleteRide", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const user_name = req.body.user_name;
   const location_of_ride = req.body.location_of_ride;
-  // console.log(user_name);
-  // console.log(location_of_ride)
+  console.log(user_name);
+  console.log(location_of_ride)
   Ride.destroy({
     where: {
       user_name: user_name,
@@ -259,17 +259,17 @@ app.post("/rides", async (req, res) => {
 });
 
 // delete a ride
-app.delete("/rides", async (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  let ridesId = req.params["id"];
-  const rides = await rides.destroy({
-    where: {
-      id: ridesId,
-    },
-  });
-  res.status(200).send("Ride was deleted");
-  //console.log(rides);
-});
+// app.delete("/rides", async (req, res) => {
+//   res.setHeader("Content-Type", "application/json");
+//   let ridesId = req.params["id"];
+//   const rides = await rides.destroy({
+//     where: {
+//       id: ridesId,
+//     },
+//   });
+//   res.status(200).send("Ride was deleted");
+//   //console.log(rides);
+// });
 
 // This is the start of the template engine calls
 app.get("/home", (req, res) => {

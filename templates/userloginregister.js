@@ -1,3 +1,5 @@
+// const express = require("express");
+
 function registerUser() {
   fetch("http://localhost:3000/registrationAttempt", {
       method: "POST",
@@ -58,17 +60,24 @@ function loginUser() {
 }
 
 function deleteRide() {
-  fetch("http://localhost:3000/ridesDelete", {
+  // e.preventDefault();
+  // let nameValue = document.getElementById("user_name").value;
+  // let locationValue = document.getElementById("location_of_ride")
+  // let url = "/rides/" + nameValue;
+  // console.log(nameValue);
+  // console.log(url);
+  // fetch(url)
+  fetch("http://localhost:3000/deleteRide", {
       method: "DELETE",
       headers: {
         // Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        date_of_ride: document.getElementById("date_of_ride").value,
+        location_of_ride: document.getElementById("location_of_ride").value,
         user_name: document.getElementById("user_name").value,
       }),
     })
-    .then((res) => res.json())
-    .then((res) => console.log(res));
+    .then(res => res.json())
+    .then(data => console.log(data))
 }
