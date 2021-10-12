@@ -31,39 +31,18 @@ function loginUser() {
         user_name: document.getElementById("user_name").value,
         password: document.getElementById("password").value,
       })
-    }) //.then(res => console.log(res.json()))
+    }).then(res => (res.json()))
     .then(res => {
-      console.log(res.json())
-      if (res.isMatch == "false") {
+      if (res.isMatch === "false") {
         const loginAlert = document.getElementById("wrong-login-alert");
         loginAlert.hidden = false;
-      } else {
+      } else if (res.isMatch === "true") {
         const userName = document.getElementById("user_name").value;
         sessionStorage.setItem("UserName", userName);
         window.location.replace("http://localhost:3000/");
       }
 
     })
-  // .then((res) => {
-  //   const loginAlert = document.getElementById("wrong-login-alert");
-  //   loginAlert.hidden = false;
-  //   console.log("TEST");
-  // })
-  // .then(response => console.log(response.json()))
-  // .then((response) => {
-  //   response.json().then((data) => {
-  //     console.log(data)
-  //   })
-  // })
-  // .then(response => {
-  //   if (!response.ok) {
-  //     throw new Error('Network response was not ok.')
-  //   }
-  // })
-  // .then(data => {
-  //   console.log(data.json())
-  // })
-  // .then(json => console.log(json));
 }
 
 function deleteRide() {
