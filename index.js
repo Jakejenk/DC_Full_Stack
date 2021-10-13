@@ -208,7 +208,7 @@ app.delete("/users/:id", async (req, res) => {
 });
 
 // get all rides
-app.get("/rides", async (req, res) => {
+app.get("/rides/:", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const rideData = await Ride.findAll();
   // console.log(rideData);
@@ -216,16 +216,16 @@ app.get("/rides", async (req, res) => {
 });
 
 // get a single ride
-app.get("/rides/:date_of_ride", async (req, res) => {
+app.get("/rides/:user_name", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const dateId = req.params["date_of_ride"];
+  const userId = req.params["user_name"];
   console.log(dateId);
-  const singleRide = await Ride.findOne({
+  const allRides = await Ride.findAll({
     where: {
-      date_of_ride: dateId,
+      user_name: userId,
     },
   });
-  res.status(200).send(singleRide);
+  res.status(200).send(allRides);
   //console.log(users);
 });
 
