@@ -178,20 +178,25 @@ app.get("/users/:id", async (req, res) => {
 app.put("/users/:id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let userId = req.params["id"];
-  const users = await User.update({
-    user_name: req.body.user_name,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    skill_level: req.body.skill_level,
-  }, {
-    where: {
-      id: userId,
-    },
-  });
-  res.status(200).send("User updated");
-  //console.log(users);
+  bcrypt.genSalt(10, (err, salt) => {
+    const hash = bcrypt.hash(req.body.password, salt, (err, hash) => {
+      if (!err) {
+        User.update({
+          user_name: req.body.user_name,
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          email: req.body.email,
+          password: hash,
+          skill_level: req.body.skill_level,
+        }, {
+          where: {
+            id: userId,
+          },
+        })
+      };
+      res.status(200).send("User updated");
+    })
+  })
 });
 
 // delete a user
