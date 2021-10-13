@@ -146,19 +146,18 @@ function dateFunction() { // Capture form parameters for date of ride
 function fillProfile() {
   const user_name = sessionStorage.getItem("UserName");
   let url = "/users/" + user_name;
-  //   console.log(user_name);
-  //   console.log(url);
-  fetch(url)
-    .then(res => res.json())
-    .then((data) => {
-      let rideData = data;
+  if ((user_name != "No One") && (user_name != null)) {
+    fetch(url)
+      .then(res => res.json())
+      .then((data) => {
+        let rideData = data;
 
-      console.log(rideData);
-      const nameDiv = document.getElementById("nameProfile");
-      const skillDiv = document.getElementById("skillProfile");
+        const nameDiv = document.getElementById("nameProfile");
+        const skillDiv = document.getElementById("skillProfile");
 
-      nameDiv.innerHTML = rideData[0].first_name;
+        nameDiv.innerHTML = rideData[0].first_name;
 
-      skillDiv.innerHTML = rideData[0].skill_level;
-    });
+        skillDiv.innerHTML = rideData[0].skill_level;
+      });
+  }
 }
