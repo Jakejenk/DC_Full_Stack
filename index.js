@@ -68,8 +68,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-class User extends Model {}
-class Ride extends Model {}
+class User extends Model { }
+class Ride extends Model { }
 
 User.init({
   user_name: DataTypes.STRING,
@@ -104,7 +104,7 @@ app.post("/loginAttempt", async (req, res) => {
       user_name: userName,
     },
   }).then((user) => {
-    bcrypt.compare(password, user.password, function(err, isMatch) {
+    bcrypt.compare(password, user.password, function (err, isMatch) {
       if (err) {
         throw err;
       } else if (!isMatch) {
@@ -178,20 +178,26 @@ app.get("/users/:id", async (req, res) => {
 app.put("/users/:id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let userId = req.params["id"];
-  const users = await User.update({
-    user_name: req.body.user_name,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    skill_level: req.body.skill_level,
-  }, {
-    where: {
-      id: userId,
-    },
-  });
-  res.status(200).send("User updated");
-  //console.log(users);
+  bcrypt.genSalt(10, (err, salt) => {
+    const hash = bcrypt.hash(req.body.password, salt, (err, hash) => {
+      if (!err) {
+        User.update({
+          user_name: req.body.user_name,
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          email: req.body.email,
+          password: hash,
+          skill_level: req.body.skill_level,
+        }, {
+          where: {
+            id: userId,
+          },
+        })
+      };
+      res.status(200).send("User updated");
+      //console.log(users);
+    })
+  })
 });
 
 // delete a user
@@ -322,6 +328,18 @@ app.get("/login", (req, res) => {
 
 app.get("/registration", (req, res) => {
   res.render("registration", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    partials: {
+      navbar: "partials/navbar",
+      head: "partials/head",
+    },
+  });
+});
+
+app.get("/modifyUser", (req, res) => {
+  res.render("modifyUser", {
     // locals: {
     //   title: "Address Book App",
     // },
