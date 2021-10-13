@@ -162,12 +162,13 @@ app.get("/users", async (req, res) => {
 });
 
 // get one user
-app.get("/users/:id", async (req, res) => {
+app.get("/users/:username", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let userId = req.params["id"];
+  let userName = req.params["username"];
+  console.log(userName);
   const users = await User.findAll({
     where: {
-      id: userId,
+      user_name: userName,
     },
   });
   res.status(200).send(users);
