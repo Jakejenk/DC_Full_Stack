@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<body>
+<body onload="setStateOfUser()">
   ${head}
   ${navbar}
   <div class="container p-3">
@@ -9,7 +9,7 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-6">
-        <form name="MyForm" class="bg-light-gray" id="registration_form">
+        <form class="bg-light-gray" id="registration_form">
           <fieldset>
 
             <!-- Form Name -->
@@ -52,7 +52,6 @@
     </div>
   </div>
   <script src="./userloginregister.js"></script>
-  <script src="./login-validation.js"></script>
 </body>
 
 </html>
