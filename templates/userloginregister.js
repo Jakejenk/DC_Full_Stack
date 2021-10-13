@@ -74,13 +74,7 @@ function validateLogin() {
 
 
 function deleteRide() {
-  // e.preventDefault();
-  // let nameValue = document.getElementById("user_name").value;
-  // let locationValue = document.getElementById("location_of_ride")
-  // let url = "/rides/" + nameValue;
-  // console.log(nameValue);
-  // console.log(url);
-  // fetch(url)
+  // const user_name = sessionStorage.getItem("UserName");
   fetch("http://localhost:3000/deleteRide", {
       method: "DELETE",
       headers: {
@@ -89,7 +83,7 @@ function deleteRide() {
       },
       body: JSON.stringify({
         location_of_ride: document.getElementById("location").value,
-        user_name: document.getElementById("rider").value,
+        user_name: sessionStorage.getItem("UserName"),
       }),
     })
     .then(res => res.json())
