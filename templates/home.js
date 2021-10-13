@@ -1,5 +1,12 @@
 function loadRideData() {
-    const user_name = sessionStorage.getItem("UserName");;
+    
+    document.getElementById("nameDiv").innerHTML = "";
+    document.getElementById("dateDiv").innerHTML = "";
+    document.getElementById("distanceDiv").innerHTML = "";
+    document.getElementById("locationDiv").innerHTML = "";
+    document.getElementById("difficultyDiv").innerHTML = "";
+
+    const user_name = sessionStorage.getItem("UserName");
     let url = "/rides/" + user_name;
     console.log(user_name);
     console.log(url);
@@ -11,7 +18,7 @@ function loadRideData() {
         console.log(rideData);
         let length = rideData.length;
         for (let i = 0; i < length; i++) {
-            let displayDiv = document.getElementById("displayDiv");
+            // let displayDiv = document.getElementById("displayDiv");
         //     const rowDiv = document.createElement('div');
 
         // //  Checking to see if seperate containers are being created
@@ -20,34 +27,34 @@ function loadRideData() {
         //     }
         // //  Creating column effect within each row
         //     displayDiv.append(rowDiv);
-            const row2Div = document.createElement('div');
-            row2Div.className = "div";
-            displayDiv.append(row2Div)
-            const row3Div = document.createElement('div');
-            row3Div.className = "div";
-            displayDiv.append(row3Div);
-            const row4Div = document.createElement('div');
-            displayDiv.append(row4Div);
-            const row5Div = document.createElement('div');
-            displayDiv.append(row5Div);
+        //     const row2Div = document.createElement('div');
+        //     row2Div.className = "div";
+        //     displayDiv.append(row2Div)
+        //     const row3Div = document.createElement('div');
+        //     row3Div.className = "div";
+        //     displayDiv.append(row3Div);
+        //     const row4Div = document.createElement('div');
+        //     displayDiv.append(row4Div);
+        //     const row5Div = document.createElement('div');
+        //     displayDiv.append(row5Div);
 
-            // const rowDiv = document.getElementById("nameDiv");
-            // const row2Div = document.getElementById("dateDiv");
-            // const row3Div = document.getElementById("distanceDiv");
-            // const row4Div = document.getElementById("locationDiv");
-            // const row5Div = document.getElementById("difficultyDiv");
+            const rowDiv = document.getElementById("nameDiv");
+            const row2Div = document.getElementById("dateDiv");
+            const row3Div = document.getElementById("distanceDiv");
+            const row4Div = document.getElementById("locationDiv");
+            const row5Div = document.getElementById("difficultyDiv");
 
-            // let nameDiv = document.createElement("div");
-            // nameDiv.innerHTML = rideData[i]["user_name"];
-            // //console.log(orgAPI[i]['user_name']);
-            // rowDiv.append(nameDiv);
+            let nameDiv = document.createElement("div");
+            nameDiv.innerHTML = rideData[i]["user_name"];
+            //console.log(orgAPI[i]['user_name']);
+            rowDiv.append(nameDiv);
 
             let dateDiv = document.createElement("div");
             dateDiv.innerHTML = rideData[i]["date_of_ride"];
             row2Div.append(dateDiv);
 
             let distanceDiv = document.createElement("div");
-            distanceDiv.innerHTML = rideData[i]["distance"];
+            distanceDiv.innerHTML = rideData[i]["distance"] + " miles";
             row3Div.append(distanceDiv);
 
             let locationDiv = document.createElement("div");
@@ -88,43 +95,50 @@ function loadTotalDistance() {
     });
 }
 
-function userFunction() { // Capture form parameters for date of ride
-    const user_name = sessionStorage.getItem("UserName");;
-    let url = "/rides/" + user_name;
-    console.log(user_name);
+function dateFunction() { // Capture form parameters for date of ride
+    document.getElementById("nameDiv").innerHTML = "";
+    document.getElementById("dateDiv").innerHTML = "";
+    document.getElementById("distanceDiv").innerHTML = "";
+    document.getElementById("locationDiv").innerHTML = "";
+    document.getElementById("difficultyDiv").innerHTML = "";
+
+    let rideDate = document.getElementById("dateRide").value;
+    const user_name = sessionStorage.getItem("UserName");
+    let url = "/rides/" + user_name + "/" + rideDate;
+    console.log(rideDate);
     console.log(url);
     fetch(url)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
 
-    //     let soloRide = data;
+        let soloRide = data;
 
-    //     const rowDiv = document.getElementById("nameDiv");
-    //     const row2Div = document.getElementById("dateDiv");
-    //     const row3Div = document.getElementById("distanceDiv");
-    //     const row4Div = document.getElementById("locationDiv");
-    //     const row5Div = document.getElementById("difficultyDiv");
+        const rowDiv = document.getElementById("nameDiv");
+        const row2Div = document.getElementById("dateDiv");
+        const row3Div = document.getElementById("distanceDiv");
+        const row4Div = document.getElementById("locationDiv");
+        const row5Div = document.getElementById("difficultyDiv");
 
-    //     let nameDiv = document.createElement("div");
-    //     nameDiv.innerHTML = soloRide['user_name'];
-    //     //console.log(orgAPI[i]['user_name']);
-    //     rowDiv.append(nameDiv);
+        let nameDiv = document.createElement("div");
+        nameDiv.innerHTML = soloRide['user_name'];
+        //console.log(orgAPI[i]['user_name']);
+        rowDiv.append(nameDiv);
 
-    //     let dateDiv = document.createElement("div");
-    //     dateDiv.innerHTML = soloRide['date_of_ride'];
-    //     row2Div.append(dateDiv);
+        let dateDiv = document.createElement("div");
+        dateDiv.innerHTML = soloRide['date_of_ride'];
+        row2Div.append(dateDiv);
 
-    //     let distanceDiv = document.createElement("div");
-    //     distanceDiv.innerHTML = soloRide['distance'];
-    //     row3Div.append(distanceDiv);
+        let distanceDiv = document.createElement("div");
+        distanceDiv.innerHTML = soloRide['distance'] + " miles";
+        row3Div.append(distanceDiv);
 
-    //     let locationDiv = document.createElement("div");
-    //     locationDiv.innerHTML = soloRide['location_of_ride'];
-    //     row4Div.append(locationDiv);
+        let locationDiv = document.createElement("div");
+        locationDiv.innerHTML = soloRide['location_of_ride'];
+        row4Div.append(locationDiv);
 
-    //     let difficultyDiv = document.createElement("div");
-    //     difficultyDiv.innerHTML = soloRide['difficulty_level'];
-    //     row5Div.append(difficultyDiv);
-    // });
+        let difficultyDiv = document.createElement("div");
+        difficultyDiv.innerHTML = soloRide['difficulty_level'];
+        row5Div.append(difficultyDiv);
+    });
 
 }
