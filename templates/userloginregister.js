@@ -132,7 +132,7 @@ function deleteRide() {
     },
     body: JSON.stringify({
       location_of_ride: document.getElementById("location").value,
-      user_name: document.getElementById("rider").value,
+      user_name: sessionStorage.getItem("UserName"),
     }),
   })
     .then(res => res.json())
