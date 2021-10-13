@@ -130,6 +130,12 @@ function deleteRide() {
       user_name: sessionStorage.getItem("UserName"),
     }),
   })
+<<<<<<< HEAD
     .then((res) => res.json())
     .then((data) => console.log(data));
 }
+=======
+    .then(res => res.json())
+    .then(data => console.log(data))
+}
+>>>>>>> a5e6dc7181b82420705517dd81050390aa7b0752
