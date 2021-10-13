@@ -13,39 +13,32 @@ function registerUser() {
       last_name: document.getElementById("last_name").value,
       skill_level: document.getElementById("skill_level").value,
       password: document.getElementById("password").value,
-      email: document.getElementById("email").value
+      email: document.getElementById("email").value,
     }),
   })
-    .then(res => (res.json()))
-    .then(res => {
-      window.location.replace("http://localhost:3000/home");
+    .then((res) => console.log(res.json()))
+    .then((res) => {
       const userName = document.getElementById("user_name").value;
       sessionStorage.setItem("UserName", userName);
-    }
-    //   if (res.isMatch === "false") {
-    //     alert("The email & password combination is incorrect. Please try again.");
-    //   } else if (res.isMatch === "true") {
-    //     sessionStorage.setItem("UserName", userName);
-    //     window.location.replace("http://localhost:3000/");
-    //   }
-
-    // })
-    )}
-
+      window.location.replace("http://localhost:3000/");
+      console.log("TEST");
+    });
+}
 
 function loginUser() {
   fetch("http://localhost:3000/loginAttempt", {
     method: "POST",
     headers: {
       // "Accept": "text/html",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       user_name: document.getElementById("user_name").value,
       password: document.getElementById("password").value,
-    })
-  }).then(res => (res.json()))
-    .then(res => {
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
       if (res.isMatch === "false") {
         alert("The email & password combination is incorrect. Please try again.");
       } else if (res.isMatch === "true") {
@@ -53,8 +46,7 @@ function loginUser() {
         sessionStorage.setItem("UserName", userName);
         window.location.replace("http://localhost:3000/");
       }
-
-    })
+    });
 }
 
 function validateLogin() {
@@ -70,7 +62,6 @@ function validateLogin() {
   } else {
     loginUser();
   }
-
 
   //   if (document.myForm.Zip.value == "" || isNaN(document.myForm.Zip.value) ||
   //     document.myForm.Zip.value.length != 5) {
@@ -88,36 +79,40 @@ function validateLogin() {
 
 function validateRegistration() {
   if (document.getElementById("user_name").value == "") {
-    alert("Please provide your username!");
+    alert("Please provide your Username!");
     document.getElementById("user_name").focus();
     return false;
   }
   if (document.getElementById("first_name").value == "") {
-    alert("Please provide your username!");
+    alert("Please provide your First Name!");
     document.getElementById("first_name").focus();
     return false;
   }
   if (document.getElementById("last_name").value == "") {
-    alert("Please provide your username!");
+    alert("Please provide your Last Name!");
     document.getElementById("last_name").focus();
     return false;
   }
   if (document.getElementById("skill_level").value == "") {
-    alert("Please provide your username!");
+    alert("Please provide your Skill Level!");
     document.getElementById("skill_level").focus();
     return false;
   }
   if (document.getElementById("password").value == "") {
-    alert("Please provide your username!");
+    alert("Please provide your Password!");
     document.getElementById("password").focus();
     return false;
   }
   if (document.getElementById("email").value == "") {
-    alert("Please provide your username!");
+    alert("Please provide your Email!");
     document.getElementById("email").focus();
     return false;
   }
-  else {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById("email").value) == false) {
+    alert("Please provide a valid Email!");
+    document.getElementById("email").focus();
+    return false;
+  } else {
     registerUser();
   }
 }
@@ -125,7 +120,6 @@ function validateRegistration() {
 function deleteRide() {
   // const user_name = sessionStorage.getItem("UserName");
   fetch("http://localhost:3000/deleteRide", {
-<<<<<<< HEAD
     method: "DELETE",
     headers: {
       // Accept: "application/json",
@@ -133,21 +127,9 @@ function deleteRide() {
     },
     body: JSON.stringify({
       location_of_ride: document.getElementById("location").value,
-      user_name: document.getElementById("rider").value,
+      user_name: sessionStorage.getItem("UserName"),
     }),
   })
-=======
-      method: "DELETE",
-      headers: {
-        // Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        location_of_ride: document.getElementById("location").value,
-        user_name: sessionStorage.getItem("UserName"),
-      }),
-    })
->>>>>>> main
-    .then(res => res.json())
-    .then(data => console.log(data))
+    .then((res) => res.json())
+    .then((data) => console.log(data));
 }

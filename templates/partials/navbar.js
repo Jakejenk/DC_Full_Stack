@@ -4,7 +4,7 @@ function setStateOfUser() {
   const registerLink = document.getElementById("registerLink");
   const logoutLink = document.getElementById("logoutLink");
   const welcomeLink = document.getElementById("welcomeLink");
-  if ((user_name != "No One") && (user_name != null)) {
+  if (user_name != "No One" && user_name != null) {
     signInLink.hidden = true;
     registerLink.hidden = true;
     logoutLink.hidden = false;
@@ -16,9 +16,11 @@ function setStateOfUser() {
     logoutLink.hidden = true;
     welcomeLink.hidden = true;
   }
-};
+}
 
 function logout() {
+  location.href = "http://localhost:3000/login";
   sessionStorage.setItem("UserName", "No One");
-  setStateOfUser();
+  console.log(sessionStorage.getItem("UserName"));
+  // setStateOfUser();
 }
