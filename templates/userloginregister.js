@@ -123,14 +123,9 @@ function validateRegistration() {
 }
 
 function deleteRide() {
-  // e.preventDefault();
-  // let nameValue = document.getElementById("user_name").value;
-  // let locationValue = document.getElementById("location_of_ride")
-  // let url = "/rides/" + nameValue;
-  // console.log(nameValue);
-  // console.log(url);
-  // fetch(url)
+  // const user_name = sessionStorage.getItem("UserName");
   fetch("http://localhost:3000/deleteRide", {
+<<<<<<< HEAD
     method: "DELETE",
     headers: {
       // Accept: "application/json",
@@ -141,6 +136,18 @@ function deleteRide() {
       user_name: document.getElementById("rider").value,
     }),
   })
+=======
+      method: "DELETE",
+      headers: {
+        // Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        location_of_ride: document.getElementById("location").value,
+        user_name: sessionStorage.getItem("UserName"),
+      }),
+    })
+>>>>>>> main
     .then(res => res.json())
     .then(data => console.log(data))
 }
