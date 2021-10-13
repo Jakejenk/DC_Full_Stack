@@ -15,7 +15,7 @@
 </head>
 
 
-<body>
+<body onload="fillProfile()">
     ${head}
     ${navbar}
     <section class="text-dark p-4" id="mainPage">
@@ -26,9 +26,8 @@
                     <div class="card text-center bg-light-gray border-0">
                         <img src="./assets/img/boy-on-bike.jpg" class="card-img-top pt-5 ps-5 pe-5" alt="Boy on bike" />
                         <div class="card-body">
-                            <h5 class="card-title pb-2" id="userId">John Q</h5>
-                            <p class="card-text">Age: 28</p>
-                            <p class="card-text">Skill Level: Intermediate</p>
+                            <h5 class="card-title pb-2" id="nameProfile"></h5>
+                            <p class="card-text" id="skillProfile"></p>
                         </div>
                     </div>
                 </div>
