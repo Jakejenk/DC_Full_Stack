@@ -17,7 +17,7 @@ function registerUser() {
       }),
     })
     .then((res) => res.json())
-    .then((res) => console.log(res));
+    .then((res) => (res));
 }
 
 function loginUser() {
