@@ -51,3 +51,30 @@ function deleteUser() {
       })
   }
 }
+
+function fillUserProfile() {
+  console.log("fillUserProfile hit");
+  const user_name = localStorage.getItem("UserName");
+  let url = "users/" + user_name;
+  if ((user_name != "No One") && (user_name != null)) {
+    fetch(url)
+      .then(res => res.json())
+      .then((data) => {
+        let userData = data;
+
+        const firstNameDiv = document.getElementById("first_name");
+        const lastNameDiv = document.getElementById("last_name");
+        const skillLevelDiv = document.getElementById("skill_level");
+        const passwordDiv = document.getElementById("password");
+        const emailDiv = document.getElementById("email");
+
+        console.log(userData);
+        firstNameDiv.value = userData[0].first_name;
+        lastNameDiv.value = userData[0].last_name;
+        skillLevelDiv.value = userData[0].skill_level;
+        passwordDiv.value = userData[0].password;
+        emailDiv.value = userData[0].email;
+
+      });
+  }
+}

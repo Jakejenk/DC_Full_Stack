@@ -159,6 +159,7 @@ app.get("/users", async (req, res) => {
 
 // get one user
 app.get("/users/:username", async (req, res) => {
+  console.log("get one user route hit");
   res.setHeader("Content-Type", "application/json");
   let userName = req.params["username"];
   const users = await User.findAll({
