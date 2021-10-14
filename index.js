@@ -22,7 +22,7 @@ const bodyParser = require("body-parser");
 // Start server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  // console.log(`Server running at port ` + port);
+  console.log(`Server running at port ` + port);
 });
 
 // Set up es6 Template Engine
