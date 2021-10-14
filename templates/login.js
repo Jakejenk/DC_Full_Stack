@@ -1,5 +1,4 @@
 async function loginUser() {
-  console.log("2nd");
 
   let response = await fetch("https://cycling4life.herokuapp.com/loginAttempt", {
       method: "POST",
@@ -32,7 +31,6 @@ async function loginUser() {
 
 function validateLogin() {
 
-  console.log("1st");
 
   if (document.getElementById("user_name").value == "") {
     alert("Please provide your username!");
