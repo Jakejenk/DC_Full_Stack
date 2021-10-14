@@ -65,7 +65,7 @@ function loadRideData() {
 }
 
 function loadTotalDistance() {
-  fetch("https://cycling4life.herokuapp.com/rides")
+  fetch("http://localhost:3000/rides")
     .then((res) => res.json())
     .then((data) => {
       let rideData = data;
@@ -155,7 +155,7 @@ function fillProfile() {
 
 function postNewRide() {
   const sessionUserName = localStorage.getItem("UserName")
-  fetch("https://cycling4life.herokuapp.com/rides", {
+  fetch("http://localhost:3000/rides", {
       method: "POST",
       headers: {
         // Accept: "application/json",
@@ -179,7 +179,7 @@ function postNewRide() {
 
 function deleteRide() {
   // const user_name = localStorage.getItem("UserName");
-  fetch("https://cycling4life.herokuapp.com/deleteRide", {
+  fetch("http://localhost:3000/deleteRide", {
       method: "DELETE",
       headers: {
         // Accept: "application/json",

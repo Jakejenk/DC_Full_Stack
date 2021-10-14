@@ -1,7 +1,7 @@
 async function loginUser() {
   console.log("2nd");
 
-  let response = await fetch("https://cycling4life.herokuapp.com/loginAttempt", {
+  let response = await fetch("http://localhost:3000/loginAttempt", {
       method: "POST",
       headers: {
         // "Accept": "text/html",
@@ -14,7 +14,7 @@ async function loginUser() {
     }).then(res => (res.json()))
     .then(res => {
       if (res.isMatch === "false") {
-        alert("The email & password combination is incorrect. Please try again.");
+        alert("The username & password combination is incorrect. Please try again.");
       } else if (res.isMatch === "true") {
         const userName = document.getElementById("user_name").value;
         localStorage.setItem("UserName", userName);
@@ -25,7 +25,7 @@ async function loginUser() {
       if (user_name === "No One" || user_name === null) {
         return
       } else {
-        document.location.replace("https://cycling4life.herokuapp.com/home");
+        document.location.replace("http://localhost:3000/home");
       }
     })
 };
