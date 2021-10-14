@@ -155,7 +155,6 @@ function fillProfile() {
 
 // running on local but not Heroku?
 function postNewRide() {
-  console.log("postNewRide()");
   const sessionUserName = localStorage.getItem("UserName")
   fetch("https://cycling4life.herokuapp.com/rides", {
       method: "POST",
@@ -173,7 +172,6 @@ function postNewRide() {
     })
     .then(res => (res.json()))
     .then(res => {
-      console.log("new ride came back")
       if (res.status === "Ride added!") {
         alert("Ride added!");
       }

@@ -21,9 +21,7 @@ const bodyParser = require("body-parser");
 
 // Start server
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server running at port ` + port);
-});
+app.listen(port, () => {});
 
 // Set up es6 Template Engine
 const es6Renderer = require("express-es6-template-engine");
@@ -145,7 +143,6 @@ app.get("/users", async (req, res) => {
 
 // get one user
 app.get("/users/:username", async (req, res) => {
-  console.log("get one user route hit");
   res.setHeader("Content-Type", "application/json");
   let userName = req.params["username"];
   const users = await User.findAll({
@@ -195,7 +192,6 @@ app.delete("/user/delete/:user_name", async (req, res) => {
 
 // post a new ride
 app.post("/rides", async (req, res) => {
-  console.log("post api");
   res.setHeader("Content-Type", "application/json");
   await Ride.create({
     user_name: req.body.user_name,

@@ -28,10 +28,8 @@ function modifyUser() {
 
 // delete a user
 function deleteUser() {
-  console.log("deleteUser fired")
   let user_Name = localStorage.getItem("UserName");
   let url = "user/delete/" + user_Name;
-  console.log("url is " + url)
   if ((user_Name != "No One") && (user_Name != null)) {
 
     fetch("https://cycling4life.herokuapp.com/" + url, {
@@ -53,7 +51,6 @@ function deleteUser() {
 }
 
 function fillUserProfile() {
-  console.log("fillUserProfile hit");
   const user_name = localStorage.getItem("UserName");
   let url = "users/" + user_name;
   if ((user_name != "No One") && (user_name != null)) {
@@ -68,7 +65,6 @@ function fillUserProfile() {
         const passwordDiv = document.getElementById("password");
         const emailDiv = document.getElementById("email");
 
-        console.log(userData);
         firstNameDiv.value = userData[0].first_name;
         lastNameDiv.value = userData[0].last_name;
         skillLevelDiv.value = userData[0].skill_level;
