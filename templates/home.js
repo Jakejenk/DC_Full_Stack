@@ -155,7 +155,7 @@ function fillProfile() {
         const nameDiv = document.getElementById("nameProfile");
         const skillDiv = document.getElementById("skillProfile");
 
-        nameDiv.innerHTML = rideData[0].first_name;
+        nameDiv.innerHTML = rideData[0].first_name + " " + rideData[0].last_name;
 
         skillDiv.innerHTML = rideData[0].skill_level;
       });
