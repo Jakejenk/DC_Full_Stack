@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<body onload="fillProfileModifyUser(), setStateOfUser()">
+<body onload="setStateOfUser()">
     ${head}
     ${navbar}
     <div class="container p-3">
@@ -15,15 +15,14 @@
 
                     <!-- Form Name -->
                     <div class="pt-3 pb-1">
-                        <h2 class="title-header mb-4 text-center">Modify Account</h2>
+                        <h2 class="title-header mb-4 text-center">Edit or Delete Your Profile</h2>
                     </div>
 
                     <div class="form-group  pb-2 ps-3 pe-3">
                         <label class="control-label">First Name</label>
                         <div class="input-group">
                             <span class="p-2 icon-border"><i class="fas fa-user"></i></span>
-                            <input name="first_name" placeholder="First Name" class="form-control" type="text"
-                                id="first_name">
+                            <input name="first_name" placeholder="First Name" class="form-control" type="text" id="first_name">
                         </div>
                     </div>
 
@@ -32,8 +31,7 @@
                         <label class="control-label">Last Name</label>
                         <div class="input-group">
                             <span class="p-2 icon-border"><i class="fas fa-user"></i></span>
-                            <input name="last_name" placeholder="Last Name" class="form-control" type="text"
-                                id="last_name">
+                            <input name="last_name" placeholder="Last Name" class="form-control" type="text" id="last_name">
                         </div>
                     </div>
 
@@ -58,8 +56,7 @@
                         <label class="control-label">Password</label>
                         <div class="input-group">
                             <span class="p-2 icon-border"><i class="fas fa-unlock"></i></span>
-                            <input name="password" placeholder="Password" class="form-control" type="password"
-                                id="password">
+                            <input name="password" placeholder="Password" class="form-control" type="password" id="password">
                         </div>
                     </div>
 
@@ -77,8 +74,7 @@
                         <label class="control-label">E-Mail</label>
                         <div class="input-group">
                             <span class="p-2 icon-border"><i class="fas fa-envelope"></i></span>
-                            <input name="email" placeholder="E-Mail Address" class="form-control" type="text"
-                                id="email">
+                            <input name="email" placeholder="E-Mail Address" class="form-control" type="text" id="email">
                         </div>
                     </div>
 
@@ -90,15 +86,16 @@
                         <label class="control-label"></label>
                         <div class="text-center"><br>
                             <button type="button" class="btn btn-primary" id="register-button" onclick="modifyUser()">
-                                SUBMIT <span><i class="far fa-paper-plane"></i></span></button>
+                                EDIT PROFILE <span><i class="far fa-paper-plane"></i></span></button>
                         </div>
                     </div>
-                    <div class="form-group pb-3">
+                    <div class="form-group pb-5">
                         <label class="control-label"></label>
                         <div class="text-center"><br>
-                          <button type="button" class="btn btn-primary" id="register-button" onclick="deleteUser()"> DELETE ACCOUNT <span><i class="far fa-paper-plane"></i></span></button>
+                            <button type="button" class="btn btn-primary" id="register-button" onclick="deleteUser()">
+                                DELETE PROFILE <span><i class="far fa-paper-plane"></i></span></button>
                         </div>
-                      </div>
+                    </div>
                 </form>
 
             </div>
@@ -106,10 +103,8 @@
             </div>
         </div>
     </div>
-    <script src="./home.js"></script>
-    <script src="./userloginregister.js"></script>
-    <script src="./login-validation.js"></script>
-    <script src="../index.js"></script>
+    <script src="./modifyUser.js"></script>
+
 </body>
 
 </html>

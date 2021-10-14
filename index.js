@@ -68,8 +68,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-class User extends Model { }
-class Ride extends Model { }
+class User extends Model {}
+class Ride extends Model {}
 
 User.init({
   user_name: DataTypes.STRING,
@@ -104,7 +104,7 @@ app.post("/loginAttempt", async (req, res) => {
       user_name: userName,
     },
   }).then((user) => {
-    bcrypt.compare(password, user.password, function (err, isMatch) {
+    bcrypt.compare(password, user.password, function(err, isMatch) {
       if (err) {
         throw err;
       } else if (!isMatch) {
@@ -136,43 +136,37 @@ app.post("/registrationAttempt", async (req, res) => {
   res.send('{"userRegistered": "true"}');
 });
 
-// delete Ride - WORKING IN POSTMAN
+// delete Ride 
 app.delete("/deleteRide", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const user_name = req.body.user_name;
   const location_of_ride = req.body.location_of_ride;
-  // console.log(user_name);
-  // console.log(location_of_ride)
   Ride.destroy({
     where: {
       user_name: user_name,
       location_of_ride: location_of_ride
     }
   })
-  res.status(200).send("Ride Deleted");
+  return res.send('{"status": "Ride deleted!"}');
 });
 
 // get all users
 app.get("/users", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const users = await User.findAll();
-  // console.log(users);
   res.status(200).send(users);
-  //// console.log(users);
 });
 
 // get one user
 app.get("/users/:username", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let userName = req.params["username"];
-  // console.log(userName);
   const users = await User.findAll({
     where: {
       user_name: userName,
     },
   });
   res.status(200).send(users);
-  //// console.log(users);
 });
 
 // update a user
@@ -195,7 +189,7 @@ app.put("/user/modify/:user_name", async (req, res) => {
           },
         })
       };
-      res.status(200).send("User updated");
+      res.send('{"userRegistered": "true"}');
     })
   })
 });
@@ -209,151 +203,120 @@ app.delete("/user/delete/:user_name", async (req, res) => {
       user_name: userName,
     },
   });
-  res.status(200).send("User was deleted");
+  res.send('{"userDeleted": "true"}');
 })
-  //// console.log(users);
 
-  // get one ride by date for current user
-  app.get("/rides/:user_name/:date_of_ride", async (req, res) => {
-    res.setHeader("Content-Type", "application/json");
-    const riderId = req.params["user_name"];
-    const dateId = req.params["date_of_ride"];
-    const rideData = await Ride.findOne({
-      where: {
-        user_name: riderId,
-        date_of_ride: dateId,
-      }
-    });
-
-    // // console.log(rideData);
-    res.status(200).send(rideData);
+// get one ride by date for current user
+app.get("/rides/:user_name/:date_of_ride", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  const riderId = req.params["user_name"];
+  const dateId = req.params["date_of_ride"];
+  const rideData = await Ride.findOne({
+    where: {
+      user_name: riderId,
+      date_of_ride: dateId,
+    }
   });
 
-  // get all rides for current user
-  app.get("/rides/:user_name", async (req, res) => {
-    res.setHeader("Content-Type", "application/json");
-    const userId = req.params["user_name"];
-    // console.log(userId);
-    const allRides = await Ride.findAll({
-      where: {
-        user_name: userId,
-      },
-    });
-    res.status(200).send(allRides);
-    //// console.log(users);
+  res.send('{"userDeleted": "true"}');
+});
+
+// get all rides for current user
+app.get("/rides/:user_name", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  const userId = req.params["user_name"];
+  const allRides = await Ride.findAll({
+    where: {
+      user_name: userId,
+    },
   });
+  res.status(200).send(allRides);
+});
 
-  //   res.send(200).send(singleRide);
-  //   // {
-
-  //   //   where: {
-  //   //     ridesDate: ridesDate
-  //   //   },
-
-  //   //   //WHERE date = ridesDATE AND user_name = userId
-  //   // });
-  //   // res.status(200).send(rides);
-  //   // //// console.log(rides);
-  // });
-
-  // post a new ride
-
-  app.post("/rides", async (req, res) => {
-    console.log("Ride Post started ...")
-    res.setHeader("Content-Type", "application/json");
-    await Ride.create({
-      user_name: req.body.user_name,
-      date_of_ride: req.body.date_of_ride,
-      location_of_ride: req.body.location_of_ride,
-      distance: req.body.distance,
-      difficulty_level: req.body.difficulty_level,
-    });
-    return res.send('{"status": "Ride added!"}');
-    // res.status(200).send("Ride added");
+// post a new ride
+app.post("/rides", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  await Ride.create({
+    user_name: req.body.user_name,
+    date_of_ride: req.body.date_of_ride,
+    location_of_ride: req.body.location_of_ride,
+    distance: req.body.distance,
+    difficulty_level: req.body.difficulty_level,
   });
+  return res.send('{"status": "Ride added!"}');
+  // res.status(200).send("Ride added");
+});
 
-  // delete a ride
-  // app.delete("/rides", async (req, res) => {
-  //   res.setHeader("Content-Type", "application/json");
-  //   let ridesId = req.params["id"];
-  //   const rides = await rides.destroy({
-  //     where: {
-  //       id: ridesId,
-  //     },
-  //   });
-  //   res.status(200).send("Ride was deleted");
-  //   //// console.log(rides);
-  // });
 
-  // This is the start of the template engine calls
-  app.get("/home", (req, res) => {
-    res.render("home", {
-      // locals: {
-      //   title: "Address Book App",
-      // },
-      partials: {
-        navbar: "partials/navbar",
-        head: "partials/head",
-      },
-    });
+// This is the start of the template engine calls
+app.get("/home", (req, res) => {
+  res.render("home", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    partials: {
+      navbar: "partials/navbar",
+      head: "partials/head",
+    },
   });
+});
 
-  app.get("/", (req, res) => {
-    res.render("home", {
-      // locals: {
-      //   title: "Address Book App",
-      // },
-      partials: {
-        navbar: "partials/navbar",
-        head: "partials/head",
-      },
-    });
+app.get("/", (req, res) => {
+  res.render("home", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    partials: {
+      navbar: "partials/navbar",
+      head: "partials/head",
+    },
   });
+});
 
-  app.get("/about", (req, res) => {
-    res.render("about-us", {
-      // locals: {
-      //   title: "Address Book App",
-      // },
-      partials: {
-        navbar: "partials/navbar",
-        head: "partials/head",
-      },
-    });
+app.get("/about", (req, res) => {
+  res.render("about-us", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    partials: {
+      navbar: "partials/navbar",
+      head: "partials/head",
+    },
   });
+});
 
-  app.get("/login", (req, res) => {
-    res.render("login", {
-      // locals: {
-      //   title: "Address Book App",
-      // },
-      partials: {
-        navbar: "partials/navbar",
-        head: "partials/head",
-      },
-    });
+app.get("/login", (req, res) => {
+  res.render("login", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    partials: {
+      navbar: "partials/navbar",
+      head: "partials/head",
+    },
   });
+});
 
-  app.get("/registration", (req, res) => {
-    res.render("registration", {
-      // locals: {
-      //   title: "Address Book App",
-      // },
-      partials: {
-        navbar: "partials/navbar",
-        head: "partials/head",
-      },
-    });
+app.get("/registration", (req, res) => {
+  res.render("registration", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    partials: {
+      navbar: "partials/navbar",
+      head: "partials/head",
+    },
   });
+});
 
-  app.get("/modifyUser", (req, res) => {
-    res.render("modifyUser", {
-      // locals: {
-      //   title: "Address Book App",
-      // },
-      partials: {
-        navbar: "partials/navbar",
-        head: "partials/head",
-      },
-    });
+app.get("/modifyUser", (req, res) => {
+  res.render("modifyUser", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    partials: {
+      navbar: "partials/navbar",
+      head: "partials/head",
+    },
   });
+});
