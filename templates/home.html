@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="col-md-6 border border-secondary">
-                    <form action="/rides" method="POST">
+                    <form>
                         <h3 class="pb-2" style="text-align: center;">Enter New Ride</h3>
                         <!-- <div class="form-group"> -->
                         <div class="row p-2">
@@ -60,19 +60,24 @@
                                 <input type="text" name="location_of_ride" id="location_of_ride" class="form-control" required>
                             </div>
                         </div>
-                        <div class="row p-2">
-                            <div class="col-md-4">
-                                <p>User ID:</p>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" name="user_name" id="user_name" class="form-control" required>
-                            </div>
-                        </div>
+
                         <div class="row p-2">
                             <div class="col-md-4">
                                 <p>Difficulty Level:</p>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col ms-5 form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="difficulty_level" id="difficulty_level" value="Easy">
+                                <label class="form-check-label" for="inlineRadio1">Easy</label>
+                            </div>
+                            <div class="col form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="difficulty_level" id="difficulty_level2" value="Moderate">
+                                <label class="form-check-label" for="inlineRadio2">Moderate</label>
+                            </div>
+                            <div class="col form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="difficulty_level" id="difficulty_level3" value="Hard">
+                                <label class="form-check-label" for="inlineRadio3">Hard</label>
+                            </div>
+                            <!-- <div class="col-md-8">
                                 <div class="input-group has-validation" id="difficulty_level">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" id="difficulty_level" name="difficulty_level" value="Easy">
@@ -87,11 +92,11 @@
                                         <label class="form-check-label" for="inlineCheckbox3">Hard</label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row p-2">
                             <div style="text-align: center;">
-                                <button class="btn btn-primary" id="ride-button" type="submit" onclick="">Submit</button>
+                                <button class="btn btn-primary" id="ride-button" type="submit" onclick="postNewRide()">Submit</button>
                             </div>
                         </div>
                         <!-- </div> -->

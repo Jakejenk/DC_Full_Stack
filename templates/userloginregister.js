@@ -42,7 +42,7 @@ function loginUser() {
       } else if (res.isMatch === "true") {
         const userName = document.getElementById("user_name").value;
         sessionStorage.setItem("UserName", userName);
-        console.log("loginUser .then statements running ...")
+        // console.log("loginUser .then statements running ...")
         setStateOfUser();
       }
 
@@ -60,7 +60,7 @@ function validateLogin() {
     document.getElementById("password").focus();
     return false;
   } else {
-    console.log("Calling loginUser.")
+    // console.log("Calling loginUser.")
     loginUser();
   }
 
