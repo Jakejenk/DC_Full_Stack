@@ -31,10 +31,10 @@
 
 ## Links
 
-- [Main Page](https://cycling4life.herokuapp.com /) - https://cycling4life.herokuapp.com /
-- [Login](https://cycling4life.herokuapp.com /login) - https://cycling4life.herokuapp.com /login
-- [Registration](https://cycling4life.herokuapp.com /registration) - https://cycling4life.herokuapp.com /registration
-- [Home](https://cycling4life.herokuapp.com /home) - https://cycling4life.herokuapp.com /home
+- [Main Page](https://cycling4life.herokuapp.com/) - https://cycling4life.herokuapp.com/
+- [Login](https://cycling4life.herokuapp.com/login) - https://cycling4life.herokuapp.com/login
+- [Registration](https://cycling4life.herokuapp.com/registration) - https://cycling4life.herokuapp.com/registration
+- [Home](https://cycling4life.herokuapp.com/home) - https://cycling4life.herokuapp.com/home
 
 ## Contributors
 

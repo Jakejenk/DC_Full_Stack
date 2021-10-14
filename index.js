@@ -94,7 +94,7 @@ Ride.init({
   modelName: "Ride",
 });
 
-// post for Login
+// login a user
 app.post("/loginAttempt", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const userName = req.body.user_name;
@@ -134,20 +134,6 @@ app.post("/registrationAttempt", async (req, res) => {
     });
   });
   res.send('{"userRegistered": "true"}');
-});
-
-// delete Ride 
-app.delete("/deleteRide", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  const user_name = req.body.user_name;
-  const location_of_ride = req.body.location_of_ride;
-  Ride.destroy({
-    where: {
-      user_name: user_name,
-      location_of_ride: location_of_ride
-    }
-  })
-  return res.send('{"status": "Ride deleted!"}');
 });
 
 // get all users
@@ -195,7 +181,7 @@ app.put("/user/modify/:user_name", async (req, res) => {
   })
 });
 
-//Delete A User
+// delete a user
 app.delete("/user/delete/:user_name", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let userName = req.params["user_name"];
@@ -205,33 +191,6 @@ app.delete("/user/delete/:user_name", async (req, res) => {
     },
   });
   res.send('{"userDeleted": "true"}');
-})
-
-// get one ride by date for current user
-app.get("/rides/:user_name/:date_of_ride", async (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  const riderId = req.params["user_name"];
-  const dateId = req.params["date_of_ride"];
-  const rideData = await Ride.findOne({
-    where: {
-      user_name: riderId,
-      date_of_ride: dateId,
-    }
-  });
-
-  res.send('{"userDeleted": "true"}');
-});
-
-// get all rides for current user
-app.get("/rides/:user_name", async (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  const userId = req.params["user_name"];
-  const allRides = await Ride.findAll({
-    where: {
-      user_name: userId,
-    },
-  });
-  res.status(200).send(allRides);
 });
 
 // post a new ride
@@ -248,8 +207,51 @@ app.post("/rides", async (req, res) => {
   // res.status(200).send("Ride added");
 });
 
+// get all rides for current user
+app.get("/rides/:user_name", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  const userId = req.params["user_name"];
+  const allRides = await Ride.findAll({
+    where: {
+      user_name: userId,
+    },
+  });
+  res.status(200).send(allRides);
+});
 
-// This is the start of the template engine calls
+// get one ride by date for current user
+app.get("/rides/:user_name/:date_of_ride", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  const riderId = req.params["user_name"];
+  const dateId = req.params["date_of_ride"];
+  const rideData = await Ride.findOne({
+    where: {
+      user_name: riderId,
+      date_of_ride: dateId,
+    }
+  });
+
+  res.status(200).send(rideData);
+});
+
+// delete Ride 
+app.delete("/deleteRide", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  const user_name = req.body.user_name;
+  const location_of_ride = req.body.location_of_ride;
+  Ride.destroy({
+    where: {
+      user_name: user_name,
+      location_of_ride: location_of_ride
+    }
+  })
+  return res.send('{"status": "Ride deleted!"}');
+});
+
+//
+// THIS IS THE START OF THE TEMPLATE ENGINE ROUTES
+//
+
 app.get("/home", (req, res) => {
   res.render("home", {
     // locals: {
