@@ -153,6 +153,7 @@ function fillProfile() {
   }
 }
 
+// running on local but not Heroku?
 function postNewRide() {
   console.log("postNewRide()");
   const sessionUserName = localStorage.getItem("UserName")
