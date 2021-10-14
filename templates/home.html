@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <style>
+    <!-- <style>
         .data-grid {
             display: grid;
             text-align: center;
@@ -11,11 +11,11 @@
             row-gap: 20px;
             grid-template-columns: auto auto auto auto auto;
         }
-    </style>
+    </style> -->
 </head>
 
 
-<body>
+<body onload="fillProfile(), setStateOfUser()">
     ${head}
     ${navbar}
     <section class="text-dark p-4" id="mainPage">
@@ -26,15 +26,14 @@
                     <div class="card text-center bg-light-gray border-0">
                         <img src="./assets/img/boy-on-bike.jpg" class="card-img-top pt-5 ps-5 pe-5" alt="Boy on bike" />
                         <div class="card-body">
-                            <h5 class="card-title pb-2" id="userId">John Q</h5>
-                            <p class="card-text">Age: 28</p>
-                            <p class="card-text">Skill Level: Intermediate</p>
+                            <h5 class="card-title pb-2" id="nameProfile"></h5>
+                            <p class="card-text" id="skillProfile"></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6 border border-secondary">
-                    <form action="/rides" method="POST">
+                    <form>
                         <h3 class="pb-2" style="text-align: center;">Enter New Ride</h3>
                         <!-- <div class="form-group"> -->
                         <div class="row p-2">
@@ -61,19 +60,24 @@
                                 <input type="text" name="location_of_ride" id="location_of_ride" class="form-control" required>
                             </div>
                         </div>
-                        <div class="row p-2">
-                            <div class="col-md-4">
-                                <p>User ID:</p>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" name="user_name" id="user_name" class="form-control" required>
-                            </div>
-                        </div>
+
                         <div class="row p-2">
                             <div class="col-md-4">
                                 <p>Difficulty Level:</p>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col ms-5 form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="difficulty_level" id="difficulty_level" value="Easy">
+                                <label class="form-check-label" for="inlineRadio1">Easy</label>
+                            </div>
+                            <div class="col form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="difficulty_level" id="difficulty_level2" value="Moderate">
+                                <label class="form-check-label" for="inlineRadio2">Moderate</label>
+                            </div>
+                            <div class="col form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="difficulty_level" id="difficulty_level3" value="Hard">
+                                <label class="form-check-label" for="inlineRadio3">Hard</label>
+                            </div>
+                            <!-- <div class="col-md-8">
                                 <div class="input-group has-validation" id="difficulty_level">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" id="difficulty_level" name="difficulty_level" value="Easy">
@@ -88,11 +92,11 @@
                                         <label class="form-check-label" for="inlineCheckbox3">Hard</label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row p-2">
                             <div style="text-align: center;">
-                                <button class="btn btn-primary" id="ride-button" type="submit" onclick="">Submit</button>
+                                <button class="btn btn-primary" id="ride-button" type="submit" onclick="postNewRide()">Submit</button>
                             </div>
                         </div>
                         <!-- </div> -->
@@ -107,23 +111,33 @@
                             <button class="btn btn-primary" type="button" onclick="loadRideData()">Summary of Rides</button>
                         </div>
                     </form>
-                    <form action="/rides/:distance" method="GET">
-                        <!-- <div class="row p-3">
+                    <!-- <form action="/rides/:distance" method="GET">
+                        <div class="row p-3">
                             <button class="btn btn-primary" type="submit" onclick="loadTotalDistance()">Distance</button>
-                        </div> -->
-                    </form>
+                        </div>
+                    </form> -->
+                    <!-- <form action="/rides/:user_name" method="GET"> -->
                     <form>
-                        <!-- action="/rides/:date_of_ride" method="GET"> -->
+                        <div class="row p-3">
+                            <label class="control-label" for="dateRide">Ride By Date</label>
+                            <input class="form-control" id="dateRide" placeholder="Date of Ride" type="date">
+                            <!-- </div>
+                        <div class="row text-center p-3"> -->
+                            <button class="btn btn-primary" type="button" onclick="dateFunction()">Submit</button>
+                        </div>
+                    </form>
 
-                        <!-- <div class="row p-1">
-                            <div class="col-md-7">
-                                <label class="control-label" for="date">Get a Ride </label>
-                                <input class="form-control" id="rideDate" placeholder="yyyy-mm-dd" type="date">
-                            </div>
-                            <div class="col-md-5 align-self-center">
-                                <button class="btn btn-primary" type="button" onclick="dateFunction()">Submit</button>
-                            </div>
-                        </div> -->
+                    <!-- Delete Ride  -->
+                    <!-- <form action=/deleteRide method="DELETE"> -->
+                    <form>
+                        <div class="row p-3">
+                            <label class="control-label">Delete A ride </label>
+                            <!-- <input class="form-control" placeholder="user_name" id="rider" type="text"> -->
+                            <input class="form-control" placeholder="location_of_ride" id="location" type="text">
+                            <!-- </div>
+                        <div class="row text-center p-3"> -->
+                            <button class="btn btn-primary" type="button" onclick="deleteRide()">Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -160,23 +174,22 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-md-9 border border-secondary" class="data-grid">
+                <div class="col-md-9 border border-secondary">
                     <div class="row text-center">
-                        <div class="col-md-2 h5 m-3 visually-hidden">User</div>
-                        <div class="col-md-2 h5 m-3">Date</div>
-                        <div class="col-md-2 h5 m-3">Distance</div>
-                        <div class="col-md-2 h5 m-3">Location</div>
-                        <div class="col-md-2 h5 m-3">Difficulty</div>
+                        <div class="col pb-3 pt-3 h5">User</div>
+                        <div class="col pb-3 pt-3 h5">Date</div>
+                        <div class="col pb-3 pt-3 h5">Distance</div>
+                        <div class="col pb-3 pt-3 h5">Location</div>
+                        <div class="col pb-3 pt-3 h5">Difficulty</div>
                     </div>
 
                     <div class="row text-center" id="displayDiv">
-                        <div class="col-md-2 m-3 visually-hidden" id="nameDiv"></div>
-                        <div class="col-md-2 m-3" id="dateDiv"></div>
-                        <div class="col-md-2 m-3" id="distanceDiv"></div>
-                        <div class="col-md-2 m-3" id="locationDiv"></div>
-                        <div class="col-md-2 m-3" id="difficultyDiv"></div>
+                        <div class="col" id="nameDiv"></div>
+                        <div class="col" id="dateDiv"></div>
+                        <div class="col" id="distanceDiv"></div>
+                        <div class="col" id="locationDiv"></div>
+                        <div class="col" id="difficultyDiv"></div>
                     </div>
                 </div>
             </div>
