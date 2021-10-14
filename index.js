@@ -176,9 +176,9 @@ app.get("/users/:username", async (req, res) => {
 });
 
 // update a user
-app.put("/users/:id", async (req, res) => {
+app.put("/user/modify/:user_name", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let userId = req.params["id"];
+  let userName = req.params["user_name"];
   bcrypt.genSalt(10, (err, salt) => {
     const hash = bcrypt.hash(req.body.password, salt, (err, hash) => {
       if (!err) {
@@ -191,7 +191,7 @@ app.put("/users/:id", async (req, res) => {
           skill_level: req.body.skill_level,
         }, {
           where: {
-            id: userId,
+            user_name: userName,
           },
         })
       };
@@ -335,6 +335,18 @@ app.get("/login", (req, res) => {
 
 app.get("/registration", (req, res) => {
   res.render("registration", {
+    // locals: {
+    //   title: "Address Book App",
+    // },
+    partials: {
+      navbar: "partials/navbar",
+      head: "partials/head",
+    },
+  });
+});
+
+app.get("/modifyUser", (req, res) => {
+  res.render("modifyUser", {
     // locals: {
     //   title: "Address Book App",
     // },

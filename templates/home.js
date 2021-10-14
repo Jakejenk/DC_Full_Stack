@@ -161,3 +161,29 @@ function fillProfile() {
       });
   }
 }
+
+function fillProfileModifyUser() {
+  const user_name = sessionStorage.getItem("UserName");
+  let url = "/users/" + user_name;
+  if ((user_name != "No One") && (user_name != null)) {
+    fetch(url)
+      .then(res => res.json())
+      .then((data) => {
+        let rideData = data;
+
+        const nameDiv = document.getElementById("nameProfile");
+        const skillDiv = document.getElementById("skillProfile");
+        nameDiv.innerHTML = rideData[0].first_name;
+
+        skillDiv.innerHTML = rideData[0].skill_level;
+      });
+  }
+}
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
