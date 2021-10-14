@@ -14,7 +14,7 @@ async function loginUser() {
     }).then(res => (res.json()))
     .then(res => {
       if (res.isMatch === "false") {
-        alert("The email & password combination is incorrect. Please try again.");
+        alert("The username & password combination is incorrect. Please try again.");
       } else if (res.isMatch === "true") {
         const userName = document.getElementById("user_name").value;
         localStorage.setItem("UserName", userName);
