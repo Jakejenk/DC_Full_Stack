@@ -6,7 +6,7 @@ function loadRideData() {
   document.getElementById("locationDiv").innerHTML = "";
   document.getElementById("difficultyDiv").innerHTML = "";
 
-  const user_name = sessionStorage.getItem("UserName");
+  const user_name = localStorage.getItem("UserName");
   let url = "/rides/" + user_name;
   // console.log(user_name);
   // console.log(url);
@@ -103,7 +103,7 @@ function dateFunction() { // Capture form parameters for date of ride
   document.getElementById("difficultyDiv").innerHTML = "";
 
   let rideDate = document.getElementById("dateRide").value;
-  const user_name = sessionStorage.getItem("UserName");
+  const user_name = localStorage.getItem("UserName");
   let url = "/rides/" + user_name + "/" + rideDate;
   // console.log(rideDate);
   // console.log(url);
@@ -144,7 +144,7 @@ function dateFunction() { // Capture form parameters for date of ride
 }
 
 function fillProfile() {
-  const user_name = sessionStorage.getItem("UserName");
+  const user_name = localStorage.getItem("UserName");
   let url = "/users/" + user_name;
   if ((user_name != "No One") && (user_name != null)) {
     fetch(url)
@@ -163,7 +163,7 @@ function fillProfile() {
 }
 
 function postNewRide() {
-  const sessionUserName = sessionStorage.getItem("UserName")
+  const sessionUserName = localStorage.getItem("UserName")
   fetch("http://localhost:3000/rides", {
       method: "POST",
       headers: {

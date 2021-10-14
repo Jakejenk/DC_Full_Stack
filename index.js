@@ -111,7 +111,6 @@ app.post("/loginAttempt", async (req, res) => {
         return res.send('{"isMatch": "false"}');
       } else {
         res.send('{"isMatch": "true"}');
-        // res.redirect("/home");
       }
     });
   });
@@ -134,6 +133,7 @@ app.post("/registrationAttempt", async (req, res) => {
       }
     });
   });
+  res.send('{"userRegistered": "true"}');
 });
 
 // delete Ride - WORKING IN POSTMAN
