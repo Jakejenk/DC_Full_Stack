@@ -2,7 +2,7 @@ function modifyUser() {
   let user_Name = localStorage.getItem("UserName");
   let url = "user/modify/" + user_Name;
   if ((user_Name != "No One") && (user_Name != null)) {
-    fetch("http://localhost:3000/" + url, {
+    fetch("https://cycling4life.herokuapp.com/" + url, {
         method: "PUT",
         headers: {
           // Accept: "application/json",
@@ -34,7 +34,7 @@ function deleteUser() {
   console.log("url is " + url)
   if ((user_Name != "No One") && (user_Name != null)) {
 
-    fetch("http://localhost:3000/" + url, {
+    fetch("https://cycling4life.herokuapp.com/" + url, {
         method: "DELETE",
         headers: {
           // Accept: "application/json",
