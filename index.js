@@ -195,6 +195,7 @@ app.delete("/user/delete/:user_name", async (req, res) => {
 
 // post a new ride
 app.post("/rides", async (req, res) => {
+  console.log("post api");
   res.setHeader("Content-Type", "application/json");
   await Ride.create({
     user_name: req.body.user_name,
