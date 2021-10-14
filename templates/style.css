@@ -49,3 +49,28 @@
   border-style: solid;
   border-color: red;
 }
+
+.btn-group button {
+  background-color: #04AA6D; 
+  border: 1px solid green;
+  color: white; 
+  padding: 10px 24px;
+  cursor: pointer; 
+  float: left; 
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
