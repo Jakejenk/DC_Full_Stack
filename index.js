@@ -68,8 +68,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-class User extends Model {}
-class Ride extends Model {}
+class User extends Model { }
+class Ride extends Model { }
 
 User.init({
   user_name: DataTypes.STRING,
@@ -104,7 +104,7 @@ app.post("/loginAttempt", async (req, res) => {
       user_name: userName,
     },
   }).then((user) => {
-    bcrypt.compare(password, user.password, function(err, isMatch) {
+    bcrypt.compare(password, user.password, function (err, isMatch) {
       if (err) {
         throw err;
       } else if (!isMatch) {
@@ -200,159 +200,160 @@ app.put("/user/modify/:user_name", async (req, res) => {
   })
 });
 
-// delete a user
-app.delete("/users/:id", async (req, res) => {
+//Delete A User
+app.delete("/user/delete/:user_name", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let userId = req.params["id"];
+  let userName = req.params["user_name"];
   const users = await User.destroy({
     where: {
-      id: userId,
+      user_name: userName,
     },
   });
   res.status(200).send("User was deleted");
+})
   //// console.log(users);
-});
 
-// get one ride by date for current user
-app.get("/rides/:user_name/:date_of_ride", async (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  const riderId = req.params["user_name"];
-  const dateId = req.params["date_of_ride"];
-  const rideData = await Ride.findOne({
-    where: {
-      user_name: riderId,
-      date_of_ride: dateId,
-    }
+  // get one ride by date for current user
+  app.get("/rides/:user_name/:date_of_ride", async (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    const riderId = req.params["user_name"];
+    const dateId = req.params["date_of_ride"];
+    const rideData = await Ride.findOne({
+      where: {
+        user_name: riderId,
+        date_of_ride: dateId,
+      }
+    });
+
+    // // console.log(rideData);
+    res.status(200).send(rideData);
   });
-  // // console.log(rideData);
-  res.status(200).send(rideData);
-});
 
-// get all rides for current user
-app.get("/rides/:user_name", async (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  const userId = req.params["user_name"];
-  // console.log(userId);
-  const allRides = await Ride.findAll({
-    where: {
-      user_name: userId,
-    },
+  // get all rides for current user
+  app.get("/rides/:user_name", async (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    const userId = req.params["user_name"];
+    // console.log(userId);
+    const allRides = await Ride.findAll({
+      where: {
+        user_name: userId,
+      },
+    });
+    res.status(200).send(allRides);
+    //// console.log(users);
   });
-  res.status(200).send(allRides);
-  //// console.log(users);
-});
 
-//   res.send(200).send(singleRide);
-//   // {
+  //   res.send(200).send(singleRide);
+  //   // {
 
-//   //   where: {
-//   //     ridesDate: ridesDate
-//   //   },
+  //   //   where: {
+  //   //     ridesDate: ridesDate
+  //   //   },
 
-//   //   //WHERE date = ridesDATE AND user_name = userId
-//   // });
-//   // res.status(200).send(rides);
-//   // //// console.log(rides);
-// });
+  //   //   //WHERE date = ridesDATE AND user_name = userId
+  //   // });
+  //   // res.status(200).send(rides);
+  //   // //// console.log(rides);
+  // });
 
-// post a new ride
+  // post a new ride
 
-app.post("/rides", async (req, res) => {
-  console.log("Ride Post started ...")
-  res.setHeader("Content-Type", "application/json");
-  await Ride.create({
-    user_name: req.body.user_name,
-    date_of_ride: req.body.date_of_ride,
-    location_of_ride: req.body.location_of_ride,
-    distance: req.body.distance,
-    difficulty_level: req.body.difficulty_level,
+  app.post("/rides", async (req, res) => {
+    console.log("Ride Post started ...")
+    res.setHeader("Content-Type", "application/json");
+    await Ride.create({
+      user_name: req.body.user_name,
+      date_of_ride: req.body.date_of_ride,
+      location_of_ride: req.body.location_of_ride,
+      distance: req.body.distance,
+      difficulty_level: req.body.difficulty_level,
+    });
+    return res.send('{"status": "Ride added!"}');
+    // res.status(200).send("Ride added");
   });
-  return res.send('{"status": "Ride added!"}');
-  // res.status(200).send("Ride added");
-});
 
-// delete a ride
-// app.delete("/rides", async (req, res) => {
-//   res.setHeader("Content-Type", "application/json");
-//   let ridesId = req.params["id"];
-//   const rides = await rides.destroy({
-//     where: {
-//       id: ridesId,
-//     },
-//   });
-//   res.status(200).send("Ride was deleted");
-//   //// console.log(rides);
-// });
+  // delete a ride
+  // app.delete("/rides", async (req, res) => {
+  //   res.setHeader("Content-Type", "application/json");
+  //   let ridesId = req.params["id"];
+  //   const rides = await rides.destroy({
+  //     where: {
+  //       id: ridesId,
+  //     },
+  //   });
+  //   res.status(200).send("Ride was deleted");
+  //   //// console.log(rides);
+  // });
 
-// This is the start of the template engine calls
-app.get("/home", (req, res) => {
-  res.render("home", {
-    // locals: {
-    //   title: "Address Book App",
-    // },
-    partials: {
-      navbar: "partials/navbar",
-      head: "partials/head",
-    },
+  // This is the start of the template engine calls
+  app.get("/home", (req, res) => {
+    res.render("home", {
+      // locals: {
+      //   title: "Address Book App",
+      // },
+      partials: {
+        navbar: "partials/navbar",
+        head: "partials/head",
+      },
+    });
   });
-});
 
-app.get("/", (req, res) => {
-  res.render("home", {
-    // locals: {
-    //   title: "Address Book App",
-    // },
-    partials: {
-      navbar: "partials/navbar",
-      head: "partials/head",
-    },
+  app.get("/", (req, res) => {
+    res.render("home", {
+      // locals: {
+      //   title: "Address Book App",
+      // },
+      partials: {
+        navbar: "partials/navbar",
+        head: "partials/head",
+      },
+    });
   });
-});
 
-app.get("/about", (req, res) => {
-  res.render("about-us", {
-    // locals: {
-    //   title: "Address Book App",
-    // },
-    partials: {
-      navbar: "partials/navbar",
-      head: "partials/head",
-    },
+  app.get("/about", (req, res) => {
+    res.render("about-us", {
+      // locals: {
+      //   title: "Address Book App",
+      // },
+      partials: {
+        navbar: "partials/navbar",
+        head: "partials/head",
+      },
+    });
   });
-});
 
-app.get("/login", (req, res) => {
-  res.render("login", {
-    // locals: {
-    //   title: "Address Book App",
-    // },
-    partials: {
-      navbar: "partials/navbar",
-      head: "partials/head",
-    },
+  app.get("/login", (req, res) => {
+    res.render("login", {
+      // locals: {
+      //   title: "Address Book App",
+      // },
+      partials: {
+        navbar: "partials/navbar",
+        head: "partials/head",
+      },
+    });
   });
-});
 
-app.get("/registration", (req, res) => {
-  res.render("registration", {
-    // locals: {
-    //   title: "Address Book App",
-    // },
-    partials: {
-      navbar: "partials/navbar",
-      head: "partials/head",
-    },
+  app.get("/registration", (req, res) => {
+    res.render("registration", {
+      // locals: {
+      //   title: "Address Book App",
+      // },
+      partials: {
+        navbar: "partials/navbar",
+        head: "partials/head",
+      },
+    });
   });
-});
 
-app.get("/modifyUser", (req, res) => {
-  res.render("modifyUser", {
-    // locals: {
-    //   title: "Address Book App",
-    // },
-    partials: {
-      navbar: "partials/navbar",
-      head: "partials/head",
-    },
+  app.get("/modifyUser", (req, res) => {
+    res.render("modifyUser", {
+      // locals: {
+      //   title: "Address Book App",
+      // },
+      partials: {
+        navbar: "partials/navbar",
+        head: "partials/head",
+      },
+    });
   });
-});

@@ -1,6 +1,3 @@
-// const express = require("express");
-
-
 function deleteRide() {
   // const user_name = localStorage.getItem("UserName");
   fetch("http://localhost:3000/deleteRide", {
@@ -11,7 +8,7 @@ function deleteRide() {
       },
       body: JSON.stringify({
         location_of_ride: document.getElementById("location").value,
-        user_name: localStorage.getItem("UserName"),
+        user_name: sessionStorage.getItem("UserName"),
       }),
     })
     .then(res => res.json())
@@ -44,5 +41,25 @@ function modifyUser() {
       })
   } else {
     alert("Please Sign in First")
+  }
+}
+
+// delete a user
+function deleteUser() {
+  let user_Name = sessionStorage.getItem("UserName");
+  let url = "user/delete/" + user_Name;
+  if ((user_Name != "No One") && (user_Name != null)) {
+    fetch("http://localhost:3000/" + url, {
+        method: "DELETE",
+        headers: {
+          // Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_name: sessionStorage.getItem("UserName"),
+        }),
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
   }
 }
