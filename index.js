@@ -22,7 +22,7 @@ const bodyParser = require("body-parser");
 // Start server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Server running at port ` + port);
+  // console.log(`Server running at port ` + port);
 });
 
 // Set up es6 Template Engine
@@ -141,8 +141,8 @@ app.delete("/deleteRide", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const user_name = req.body.user_name;
   const location_of_ride = req.body.location_of_ride;
-  console.log(user_name);
-  console.log(location_of_ride)
+  // console.log(user_name);
+  // console.log(location_of_ride)
   Ride.destroy({
     where: {
       user_name: user_name,
@@ -156,23 +156,23 @@ app.delete("/deleteRide", (req, res) => {
 app.get("/users", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const users = await User.findAll();
-  console.log(users);
+  // console.log(users);
   res.status(200).send(users);
-  //console.log(users);
+  //// console.log(users);
 });
 
 // get one user
 app.get("/users/:username", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let userName = req.params["username"];
-  console.log(userName);
+  // console.log(userName);
   const users = await User.findAll({
     where: {
       user_name: userName,
     },
   });
   res.status(200).send(users);
-  //console.log(users);
+  //// console.log(users);
 });
 
 // update a user
@@ -210,7 +210,7 @@ app.delete("/users/:id", async (req, res) => {
     },
   });
   res.status(200).send("User was deleted");
-  //console.log(users);
+  //// console.log(users);
 });
 
 // get one ride by date for current user
@@ -224,7 +224,7 @@ app.get("/rides/:user_name/:date_of_ride", async (req, res) => {
       date_of_ride: dateId,
     }
   });
-  // console.log(rideData);
+  // // console.log(rideData);
   res.status(200).send(rideData);
 });
 
@@ -232,14 +232,14 @@ app.get("/rides/:user_name/:date_of_ride", async (req, res) => {
 app.get("/rides/:user_name", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   const userId = req.params["user_name"];
-  console.log(userId);
+  // console.log(userId);
   const allRides = await Ride.findAll({
     where: {
       user_name: userId,
     },
   });
   res.status(200).send(allRides);
-  //console.log(users);
+  //// console.log(users);
 });
 
 //   res.send(200).send(singleRide);
@@ -252,12 +252,13 @@ app.get("/rides/:user_name", async (req, res) => {
 //   //   //WHERE date = ridesDATE AND user_name = userId
 //   // });
 //   // res.status(200).send(rides);
-//   // //console.log(rides);
+//   // //// console.log(rides);
 // });
 
 // post a new ride
 
 app.post("/rides", async (req, res) => {
+  console.log("Ride Post started ...")
   res.setHeader("Content-Type", "application/json");
   await Ride.create({
     user_name: req.body.user_name,
@@ -266,9 +267,8 @@ app.post("/rides", async (req, res) => {
     distance: req.body.distance,
     difficulty_level: req.body.difficulty_level,
   });
-
-  res.status(200).send("Ride added");
-  // console.log(rides);
+  return res.send('{"status": "Ride added!"}');
+  // res.status(200).send("Ride added");
 });
 
 // delete a ride
@@ -281,7 +281,7 @@ app.post("/rides", async (req, res) => {
 //     },
 //   });
 //   res.status(200).send("Ride was deleted");
-//   //console.log(rides);
+//   //// console.log(rides);
 // });
 
 // This is the start of the template engine calls
