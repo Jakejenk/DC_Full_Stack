@@ -1,5 +1,5 @@
 function registerUser() {
-  fetch("http://localhost:3000/registrationAttempt", {
+  fetch("https://cycling4life.herokuapp.com/registrationAttempt", {
       method: "POST",
       headers: {
         // Accept: "application/json",
@@ -24,7 +24,7 @@ function registerUser() {
       if (user_name === "No One" || user_name === null) {
         return
       } else {
-        document.location.replace("http://localhost:3000/home");
+        document.location.replace("https://cycling4life.herokuapp.com/home");
       }
     })
 }
