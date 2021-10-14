@@ -8,14 +8,11 @@ function loadRideData() {
 
   const user_name = localStorage.getItem("UserName");
   let url = "/rides/" + user_name;
-  // console.log(user_name);
-  // console.log(url);
   fetch(url)
     .then(res => res.json())
     .then((data) => {
       let rideData = data;
 
-      // console.log(rideData);
       let length = rideData.length;
       for (let i = 0; i < length; i++) {
         // let displayDiv = document.getElementById("displayDiv");
@@ -46,7 +43,6 @@ function loadRideData() {
 
         let nameDiv = document.createElement("div");
         nameDiv.innerHTML = rideData[i]["user_name"];
-        //// console.log(orgAPI[i]['user_name']);
         rowDiv.append(nameDiv);
 
         let dateDiv = document.createElement("div");
@@ -74,7 +70,6 @@ function loadTotalDistance() {
     .then((data) => {
       let rideData = data;
       let length = rideData.length;
-      // console.log(rideData);
       let numArray = []
 
       for (let i = 0; i < length; i++) {
@@ -82,7 +77,6 @@ function loadTotalDistance() {
 
         let oneDistance = rideData[i]['distance'];
         let totalDistance = oneDistance
-        // console.log(oneDistance);
 
 
 
@@ -105,8 +99,6 @@ function dateFunction() { // Capture form parameters for date of ride
   let rideDate = document.getElementById("dateRide").value;
   const user_name = localStorage.getItem("UserName");
   let url = "/rides/" + user_name + "/" + rideDate;
-  // console.log(rideDate);
-  // console.log(url);
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -121,7 +113,6 @@ function dateFunction() { // Capture form parameters for date of ride
 
       let nameDiv = document.createElement("div");
       nameDiv.innerHTML = soloRide['user_name'];
-      //// console.log(orgAPI[i]['user_name']);
       rowDiv.append(nameDiv);
 
       let dateDiv = document.createElement("div");
@@ -180,9 +171,29 @@ function postNewRide() {
     })
     .then(res => (res.json()))
     .then(res => {
-      console.log("Ride added section");
       if (res.status === "Ride added!") {
         alert("Ride added!");
+      }
+    })
+}
+
+function deleteRide() {
+  // const user_name = localStorage.getItem("UserName");
+  fetch("http://localhost:3000/deleteRide", {
+      method: "DELETE",
+      headers: {
+        // Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        location_of_ride: document.getElementById("location").value,
+        user_name: localStorage.getItem("UserName"),
+      }),
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.status === "Ride deleted!") {
+        alert("Ride deleted!");
       }
     })
 }
